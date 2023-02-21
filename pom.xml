@@ -11,9 +11,13 @@
 	<groupId>com.example</groupId>
 	<artifactId>expenditure-tracker-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>expenditure-tracker-api</name>
+    <packaging>pom</packaging>
+    <name>expenditure-tracker-api</name>
 	<description>SpringBoot Expenditure Tracker API</description>
-	<properties>
+    <modules>
+        <module>app</module>
+    </modules>
+    <properties>
 		<java.version>11</java.version>
 	</properties>
 	<dependencies>
