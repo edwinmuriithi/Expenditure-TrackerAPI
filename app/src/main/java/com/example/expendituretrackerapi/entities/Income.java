@@ -1,10 +1,12 @@
 package com.example.expendituretrackerapi.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Data
@@ -17,4 +19,14 @@ public class Income {
     private Integer income;
     private Integer expenditure;
     private Integer budget;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable = false)
+    @JsonFormat(pattern="yyyy-MM-dd")
+    private Date createdDate;
+
+    @PrePersist
+    private void onCreate(){
+        createdDate = new Date();
+    }
+
 }
