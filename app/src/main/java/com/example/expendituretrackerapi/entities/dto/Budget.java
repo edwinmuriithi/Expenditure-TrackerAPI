@@ -1,4 +1,4 @@
 package com.example.expendituretrackerapi.entities.dto;
 
-public class expenditure {
+public class Budget {
 }

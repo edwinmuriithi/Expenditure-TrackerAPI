@@ -13,7 +13,7 @@ import javax.persistence.Id;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class budget {
+public class Budget {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
