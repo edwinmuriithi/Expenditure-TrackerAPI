@@ -1,16 +1,17 @@
 package com.example.expendituretrackerapi.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.Date;
 
 @Data
 @Entity
+@Table(name = "expenditure")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Expenditure {
@@ -25,4 +26,13 @@ public class Expenditure {
     private Integer shopping;
     private Integer entertainment;
     private Integer total;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable = false)
+    @JsonFormat(pattern="yyyy-MM-dd")
+    private Date createdDate;
+
+    @PrePersist
+    private void onCreate(){
+        createdDate = new Date();
+    }
 }

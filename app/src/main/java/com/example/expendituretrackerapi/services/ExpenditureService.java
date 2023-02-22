@@ -1,4 +1,4 @@
 package com.example.expendituretrackerapi.services;
 
-public class Expenditure {
+public interface ExpenditureService {
 }
