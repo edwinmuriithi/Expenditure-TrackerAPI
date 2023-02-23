@@ -26,6 +26,9 @@ public class Expenditure {
     private Integer shopping;
     private Integer entertainment;
     private Integer total;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "income_id")
+    private Income income;
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
     @JsonFormat(pattern="yyyy-MM-dd")
