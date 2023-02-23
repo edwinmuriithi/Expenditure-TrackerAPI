@@ -5,6 +5,8 @@ import com.example.expendituretrackerapi.repositories.ExpenditureRepository;
 import com.example.expendituretrackerapi.services.ExpenditureService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 public class ExpenditureServiceImpl implements ExpenditureService {
 
     @Autowired
@@ -26,5 +28,11 @@ public class ExpenditureServiceImpl implements ExpenditureService {
         expenditure.setTotal(expenditure.getTotal());
         Expenditure newExpenditure = expenditureRepository.save(expenditure);
         return newExpenditure;
+    }
+
+    @Override
+    public List<Expenditure> viewExpenditure() {
+        List<Expenditure> expenditures = expenditureRepository.findAll();
+        return expenditures;
     }
 }

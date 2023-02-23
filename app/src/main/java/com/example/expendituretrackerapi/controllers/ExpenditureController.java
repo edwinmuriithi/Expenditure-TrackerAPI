@@ -10,10 +10,10 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/expenditure")
@@ -36,5 +36,12 @@ public class ExpenditureController {
         Expenditure expenditure = expenditureService.createExpenditure(expenditureRequest);
         ExpenditureDTO expenditureResponse = modelMapper.map(expenditure, ExpenditureDTO.class);
         return new ResponseEntity<ExpenditureDTO>(expenditureResponse, HttpStatus.CREATED);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<ExpenditureDTO>> viewAll(){
+        return ResponseEntity.ok(expenditureService.viewExpenditure().stream()
+                .map(expenditure -> modelMapper.map(expenditure, ExpenditureDTO.class))
+                .collect(Collectors.toList()));
     }
 }
