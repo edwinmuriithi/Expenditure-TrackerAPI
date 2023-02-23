@@ -18,6 +18,9 @@ public class Budget {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private Integer budget;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "income_id")
+    private Income income;
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
     @JsonFormat(pattern="yyyy-MM-dd")
