@@ -8,10 +8,10 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/income")
@@ -32,5 +32,12 @@ public class IncomeController {
         Income income = incomeService.createIncome(incomeRequest);
         IncomeDTO incomeResponse = modelMapper.map(income,IncomeDTO.class);
         return new ResponseEntity<IncomeDTO>(incomeResponse, HttpStatus.CREATED);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<IncomeDTO>> viewAll(){
+        return ResponseEntity.ok(incomeService.viewIncome().stream()
+                .map(income -> modelMapper.map(income, IncomeDTO.class))
+                .collect(Collectors.toList()));
     }
 }
