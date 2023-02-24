@@ -4,9 +4,10 @@ import com.example.expendituretrackerapi.entities.Expenditure;
 import com.example.expendituretrackerapi.repositories.ExpenditureRepository;
 import com.example.expendituretrackerapi.services.ExpenditureService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class ExpenditureServiceImpl implements ExpenditureService {
 
     @Autowired
