@@ -22,6 +22,7 @@ public class Income {
     @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "income")
     @JoinColumn(name = "expenditure_id")
     private Expenditure expenditure;
+
     @Column(nullable = false)
     @JsonFormat(pattern="yyyy-MM-dd")
     private LocalDate createdDate;
