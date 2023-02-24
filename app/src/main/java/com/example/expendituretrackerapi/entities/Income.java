@@ -17,13 +17,10 @@ public class Income {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private Integer income;
-
+    private Integer budget;
     @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "income")
     @JoinColumn(name = "expenditure_id")
     private Expenditure expenditure;
-    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "income")
-    @JoinColumn(name = "budget_id")
-    private Budget budget;
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
     @JsonFormat(pattern="yyyy-MM-dd")
