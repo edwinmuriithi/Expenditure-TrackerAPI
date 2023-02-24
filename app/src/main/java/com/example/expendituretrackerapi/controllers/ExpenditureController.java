@@ -47,7 +47,7 @@ public class ExpenditureController {
                 .collect(Collectors.toList()));
     }
 
-    @GetMapping("expenditureId")
+    @GetMapping("{expenditureId}")
     public ResponseEntity<ExpenditureDTO>viewById(@PathVariable Long expenditureId){
         Expenditure expenditure = expenditureService.findById(expenditureId);
         ExpenditureDTO expenditureResponse = modelMapper.map(expenditure, ExpenditureDTO.class);
