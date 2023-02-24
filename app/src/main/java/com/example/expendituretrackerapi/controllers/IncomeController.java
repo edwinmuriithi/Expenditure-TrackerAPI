@@ -43,7 +43,7 @@ public class IncomeController {
     }}
 
     @GetMapping
-    public ResponseEntity<List<IncomeDTO>> viewAll(){
+    public ResponseEntity<List<IncomeDTO>> viewAll() throws IncomeNotFoundException{
         log.info("Fetched Income Successfully");
         return ResponseEntity.ok(incomeService.viewIncome().stream()
                 .map(income -> modelMapper.map(income, IncomeDTO.class))
