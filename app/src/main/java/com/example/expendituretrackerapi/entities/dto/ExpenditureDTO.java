@@ -16,7 +16,7 @@ public class ExpenditureDTO {
     private Integer shopping;
     private Integer entertainment;
     private Integer total;
-    private IncomeDTO incomeDTO;
+    private IncomeDTO income;
     @JsonFormat(pattern="yyyy-MM-dd")
     private LocalDate createdDate;
 
