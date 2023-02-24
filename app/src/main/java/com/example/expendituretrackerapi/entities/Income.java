@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -19,15 +20,20 @@ public class Income {
     private Long id;
     private Integer income;
     private Integer budget;
-
     @Temporal(TemporalType.TIMESTAMP)
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "income")
+    @JoinColumn(name = "expenditure_id")
+    private Expenditure expenditure;
+
     @Column(nullable = false)
     @JsonFormat(pattern="yyyy-MM-dd")
-    private Date createdDate;
+    private LocalDate createdDate;
 
     @PrePersist
     private void onCreate(){
-        createdDate = new Date();
+        createdDate =  LocalDate.now();
     }
+
+
 
 }
