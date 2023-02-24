@@ -12,15 +12,14 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "income")
 public class Income {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private Integer income;
     private Integer budget;
-    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "income")
-    @JoinColumn(name = "expenditure_id")
-    private Expenditure expenditure;
+
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
     @JsonFormat(pattern="yyyy-MM-dd")

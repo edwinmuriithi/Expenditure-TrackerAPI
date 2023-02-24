@@ -1,6 +1,7 @@
 package com.example.expendituretrackerapi.controllers;
 
 import com.example.expendituretrackerapi.entities.Expenditure;
+import com.example.expendituretrackerapi.entities.Income;
 import com.example.expendituretrackerapi.entities.dto.ExpenditureDTO;
 import com.example.expendituretrackerapi.repositories.ExpenditureRepository;
 import com.example.expendituretrackerapi.repositories.IncomeRepository;
@@ -24,16 +25,18 @@ public class ExpenditureController {
     private ExpenditureRepository expenditureRepository;
     @Autowired
     private ModelMapper modelMapper;
+    @Autowired
+    private IncomeRepository incomeRepository;
 
     public ExpenditureController(ExpenditureService expenditureService, ExpenditureRepository expenditureRepository) {
         this.expenditureService = expenditureService;
         this.expenditureRepository = expenditureRepository;
     }
 
-    @PostMapping
-    public ResponseEntity<ExpenditureDTO>createExpenditure(@RequestBody ExpenditureDTO expenditureDTO){
+    @PostMapping("/{incomeId}")
+    public ResponseEntity<ExpenditureDTO>createExpenditure(@RequestBody ExpenditureDTO expenditureDTO,@PathVariable(value = "incomeId") Long incomeId){
         Expenditure expenditureRequest = modelMapper.map(expenditureDTO,Expenditure.class);
-        Expenditure expenditure = expenditureService.createExpenditure(expenditureRequest);
+        Expenditure expenditure = expenditureService.createExpenditure(expenditureRequest,incomeId);
         ExpenditureDTO expenditureResponse = modelMapper.map(expenditure, ExpenditureDTO.class);
         return new ResponseEntity<ExpenditureDTO>(expenditureResponse, HttpStatus.CREATED);
     }
