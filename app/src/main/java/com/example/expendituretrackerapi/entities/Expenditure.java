@@ -29,13 +29,12 @@ public class Expenditure {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "income_id")
     private Income income;
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
     @JsonFormat(pattern="yyyy-MM-dd")
-    private Date createdDate;
+    private LocalDate createdDate;
 
     @PrePersist
     private void onCreate(){
-        createdDate = new Date();
+        createdDate = LocalDate.now();
     }
 }
