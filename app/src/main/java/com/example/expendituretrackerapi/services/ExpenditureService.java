@@ -9,4 +9,5 @@ import java.util.List;
 public interface ExpenditureService {
     Expenditure createExpenditure(Expenditure expenditure);
     List<Expenditure> viewExpenditure();
+    Expenditure findById(Long expenditureId);
 }

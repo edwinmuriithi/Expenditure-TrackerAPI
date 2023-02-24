@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Slf4j
@@ -38,5 +39,17 @@ public class ExpenditureServiceImpl implements ExpenditureService {
     public List<Expenditure> viewExpenditure() {
         List<Expenditure> expenditures = expenditureRepository.findAll();
         return expenditures;
+    }
+
+    @Override
+    public Expenditure findById(Long expenditureId) {
+        Optional<Expenditure> expenditure = expenditureRepository.findById(expenditureId);
+        if(expenditure.isPresent()){
+            log.info("Fetched Expenditure successfully");
+            return expenditure.get();
+        }else {
+            log.info("Expenditure ID not found");
+        }
+        return null;
     }
 }
