@@ -28,4 +28,12 @@ public class AppExceptionHandler {
         errorMap.put("errorMessage", ex.getMessage());
         return errorMap;
     }
+
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler(IncomeNotFoundException.class)
+    public Map<String, String> handleBusinessException(IncomeNotFoundException ex) {
+        Map<String, String> errorMap = new HashMap<>();
+        errorMap.put("errorMessage", ex.getMessage());
+        return errorMap;
+    }
 }

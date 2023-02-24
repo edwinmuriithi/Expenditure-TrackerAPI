@@ -1,6 +1,7 @@
 package com.example.expendituretrackerapi.services.impl;
 
 import com.example.expendituretrackerapi.entities.Income;
+import com.example.expendituretrackerapi.exception.IncomeNotFoundException;
 import com.example.expendituretrackerapi.repositories.IncomeRepository;
 import com.example.expendituretrackerapi.services.IncomeService;
 import lombok.extern.slf4j.Slf4j;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Slf4j
@@ -33,5 +35,17 @@ public class IncomeServiceImpl implements IncomeService {
     public List<Income> viewIncome() {
         List<Income> income = incomeRepository.findAll();
         return income;
+    }
+
+    @Override
+    public Income findById(Long incomeId) throws IncomeNotFoundException {
+        Optional<Income> income = incomeRepository.findById(incomeId);
+        if (income.isPresent()){
+            log.info("Fetched Income by ID successfully {}",incomeId);
+            return income.get();
+        }else{
+            log.error("Income ID not found {}",incomeId);
+            throw new IncomeNotFoundException("Income not found with id: "+incomeId);
+        }
     }
 }
