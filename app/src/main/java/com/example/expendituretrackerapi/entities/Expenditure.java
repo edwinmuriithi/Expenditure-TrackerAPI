@@ -26,7 +26,7 @@ public class Expenditure {
     private Integer shopping;
     private Integer entertainment;
     private Integer total;
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "income_id")
     private Income income;
     @Column(nullable = false)

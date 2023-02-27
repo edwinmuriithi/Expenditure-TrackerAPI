@@ -25,7 +25,6 @@ public class IncomeServiceImpl implements IncomeService {
     public Income createIncome(Income income) {
         income.setIncome(income.getIncome());
         income.setBudget(income.getBudget());
-        income.setExpenditure(income.getExpenditure());
         income.setCreatedDate(income.getCreatedDate());
         Income newIncome = incomeRepository.save(income);
         return newIncome;

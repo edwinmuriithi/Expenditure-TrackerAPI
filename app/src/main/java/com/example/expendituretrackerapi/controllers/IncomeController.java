@@ -25,7 +25,7 @@ public class IncomeController {
     private IncomeRepository incomeRepository;
     @Autowired
     private ModelMapper modelMapper;
-    private IncomeController(IncomeService incomeService,IncomeRepository incomeRepository){
+    public IncomeController(IncomeService incomeService,IncomeRepository incomeRepository){
         this.incomeService = incomeService;
         this.incomeRepository = incomeRepository;
     }

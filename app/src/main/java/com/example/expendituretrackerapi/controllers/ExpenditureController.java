@@ -6,7 +6,6 @@ import com.example.expendituretrackerapi.exception.ExpenditureNotFoundException;
 import com.example.expendituretrackerapi.repositories.ExpenditureRepository;
 import com.example.expendituretrackerapi.repositories.IncomeRepository;
 import com.example.expendituretrackerapi.services.ExpenditureService;
-import com.example.expendituretrackerapi.services.IncomeService;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,16 +26,19 @@ public class ExpenditureController {
     private ExpenditureRepository expenditureRepository;
     @Autowired
     private ModelMapper modelMapper;
+    @Autowired
+    private IncomeRepository incomeRepository;
 
-    public ExpenditureController(ExpenditureService expenditureService, ExpenditureRepository expenditureRepository) {
+    public ExpenditureController(ExpenditureService expenditureService, ExpenditureRepository expenditureRepository,IncomeRepository incomeRepository) {
         this.expenditureService = expenditureService;
         this.expenditureRepository = expenditureRepository;
+        this.incomeRepository = incomeRepository;
     }
 
-    @PostMapping
-    public ResponseEntity<ExpenditureDTO>createExpenditure(@RequestBody ExpenditureDTO expenditureDTO){
+    @PostMapping("/{incomeId}")
+    public ResponseEntity<ExpenditureDTO>createExpenditure(@RequestBody ExpenditureDTO expenditureDTO,@PathVariable(value = "incomeId") Long incomeId){
         Expenditure expenditureRequest = modelMapper.map(expenditureDTO,Expenditure.class);
-        Expenditure expenditure = expenditureService.createExpenditure(expenditureRequest);
+        Expenditure expenditure = expenditureService.createExpenditure(expenditureRequest,incomeId);
         ExpenditureDTO expenditureResponse = modelMapper.map(expenditure, ExpenditureDTO.class);
         if(expenditure == null){
             log.error("Expenditure not saved");
