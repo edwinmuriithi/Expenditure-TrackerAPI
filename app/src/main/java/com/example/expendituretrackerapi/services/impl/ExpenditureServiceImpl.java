@@ -5,6 +5,7 @@ import com.example.expendituretrackerapi.entities.Income;
 
 import com.example.expendituretrackerapi.exception.ExpenditureNotFoundException;
 
+import com.example.expendituretrackerapi.exception.IncomeNotFoundException;
 import com.example.expendituretrackerapi.repositories.ExpenditureRepository;
 import com.example.expendituretrackerapi.repositories.IncomeRepository;
 import com.example.expendituretrackerapi.services.ExpenditureService;
@@ -21,17 +22,18 @@ public class ExpenditureServiceImpl implements ExpenditureService {
 
     @Autowired
     private ExpenditureRepository expenditureRepository;
+    @Autowired
     private IncomeRepository incomeRepository;
 
-    public ExpenditureServiceImpl(ExpenditureRepository expenditureRepository) {
+    public ExpenditureServiceImpl(ExpenditureRepository expenditureRepository,IncomeRepository incomeRepository) {
         this.expenditureRepository = expenditureRepository;
+        this.incomeRepository = incomeRepository;
     }
 
     @Override
     public Expenditure createExpenditure(Expenditure expenditure,Long incomeId) {
         Income income = incomeRepository.findById(incomeId).orElseThrow(()->
-                new RuntimeException("not found income with id :" + incomeId));
-        expenditure.setIncome(income);
+                new IncomeNotFoundException("not found income with id :" + incomeId));
         expenditure.setRent(expenditure.getRent());
         expenditure.setFood(expenditure.getFood());
         expenditure.setTransport(expenditure.getTransport());
@@ -40,6 +42,7 @@ public class ExpenditureServiceImpl implements ExpenditureService {
         expenditure.setShopping(expenditure.getShopping());
         expenditure.setEntertainment(expenditure.getEntertainment());
         expenditure.setTotal(expenditure.getTotal());
+        expenditure.setIncome(income);
         Expenditure newExpenditure = expenditureRepository.save(expenditure);
         return newExpenditure;
     }

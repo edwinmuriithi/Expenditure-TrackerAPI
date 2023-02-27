@@ -1,13 +1,11 @@
 package com.example.expendituretrackerapi.controllers;
 
 import com.example.expendituretrackerapi.entities.Expenditure;
-import com.example.expendituretrackerapi.entities.Income;
 import com.example.expendituretrackerapi.entities.dto.ExpenditureDTO;
 import com.example.expendituretrackerapi.exception.ExpenditureNotFoundException;
 import com.example.expendituretrackerapi.repositories.ExpenditureRepository;
 import com.example.expendituretrackerapi.repositories.IncomeRepository;
 import com.example.expendituretrackerapi.services.ExpenditureService;
-import com.example.expendituretrackerapi.services.IncomeService;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,9 +29,10 @@ public class ExpenditureController {
     @Autowired
     private IncomeRepository incomeRepository;
 
-    public ExpenditureController(ExpenditureService expenditureService, ExpenditureRepository expenditureRepository) {
+    public ExpenditureController(ExpenditureService expenditureService, ExpenditureRepository expenditureRepository,IncomeRepository incomeRepository) {
         this.expenditureService = expenditureService;
         this.expenditureRepository = expenditureRepository;
+        this.incomeRepository = incomeRepository;
     }
 
     @PostMapping("/{incomeId}")
