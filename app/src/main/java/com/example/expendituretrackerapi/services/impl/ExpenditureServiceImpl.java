@@ -48,9 +48,15 @@ public class ExpenditureServiceImpl implements ExpenditureService {
     }
 
     @Override
-    public List<Expenditure> viewExpenditure() {
+    public List<Expenditure> viewExpenditure() throws ExpenditureNotFoundException{
         List<Expenditure> expenditures = expenditureRepository.findAll();
-        return expenditures;
+        if (expenditures.isEmpty()){
+            log.info("Expenditure is empty");
+            throw new ExpenditureNotFoundException("There is no expenditure which has been saved");
+        }   else {
+            log.info("Expenditure has been retrieved successfully");
+            return expenditures;
+        }
     }
 
     @Override
