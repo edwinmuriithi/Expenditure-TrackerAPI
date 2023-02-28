@@ -43,7 +43,7 @@ public class IncomeServiceImpl implements IncomeService {
             log.info("Fetched Income by ID successfully {}",incomeId);
             return income.get();
         }else{
-            log.error("Income ID not found {}",incomeId);
+            log.error("Income with ID "+incomeId+" not found");
             throw new IncomeNotFoundException("Income not found with id: "+incomeId);
         }
     }

@@ -54,8 +54,13 @@ public class IncomeController {
     public ResponseEntity<IncomeDTO>viewIncomeBYId(@PathVariable Long incomeId) throws IncomeNotFoundException {
         Income income = incomeService.findById(incomeId);
         IncomeDTO incomeResponse = modelMapper.map(income, IncomeDTO.class);
-        log.info("Income has been fetched with ID {}",incomeId);
-        return ResponseEntity.ok().body(incomeResponse);
+        if (incomeResponse !=null) {
+            log.info("Income has been fetched with ID {}", incomeId);
+            return ResponseEntity.ok().body(incomeResponse);
+        }else {
+            log.info("Unable to fetch income with ID {}", incomeId);
+            throw new IncomeNotFoundException("Income ID "+incomeId+" does not exist");
+        }
     }
 
     @DeleteMapping("/{incomeId}")
