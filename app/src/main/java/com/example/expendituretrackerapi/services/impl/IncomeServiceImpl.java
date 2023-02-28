@@ -26,8 +26,13 @@ public class IncomeServiceImpl implements IncomeService {
         income.setIncome(income.getIncome());
         income.setBudget(income.getBudget());
         income.setCreatedDate(income.getCreatedDate());
-        Income newIncome = incomeRepository.save(income);
-        return newIncome;
+        if (income.getIncome() > income.getBudget()){
+            Income newIncome = incomeRepository.save(income);
+            return newIncome;
+        }else {
+            throw new IncomeNotFoundException("budget should not exceed income");
+        }
+
     }
 
     @Override
