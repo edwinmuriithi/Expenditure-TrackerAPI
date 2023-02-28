@@ -58,4 +58,10 @@ public class IncomeController {
         return ResponseEntity.ok().body(incomeResponse);
     }
 
+    @DeleteMapping("/{incomeId}")
+    public void deleteIncome(@PathVariable Long incomeId)throws IncomeNotFoundException{
+        log.info("Income deleted successfully");
+        incomeService.deleteIncomeById(incomeId);
+    }
+
 }

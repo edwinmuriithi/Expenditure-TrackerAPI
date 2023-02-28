@@ -11,4 +11,5 @@ public interface IncomeService {
     Income createIncome(Income income) throws IncomeNotFoundException;
     List<Income> viewIncome();
     Income findById(Long incomeId) throws IncomeNotFoundException;
+    void deleteIncomeById(Long incomeId)throws IncomeNotFoundException;
 }

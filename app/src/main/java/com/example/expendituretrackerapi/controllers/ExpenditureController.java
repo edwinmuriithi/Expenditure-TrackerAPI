@@ -57,11 +57,17 @@ public class ExpenditureController {
                 .collect(Collectors.toList()));
     }
 
-    @GetMapping("{expenditureId}")
+    @GetMapping("/{expenditureId}")
     public ResponseEntity<ExpenditureDTO>viewById(@PathVariable Long expenditureId){
         Expenditure expenditure = expenditureService.findById(expenditureId);
         ExpenditureDTO expenditureResponse = modelMapper.map(expenditure, ExpenditureDTO.class);
         log.info("Expenditure has been fetched with ID {}", expenditureId);
         return ResponseEntity.ok().body(expenditureResponse);
+    }
+
+    @DeleteMapping("/{expenditureId}")
+    public void deleteExpenditureById(@PathVariable Long expenditureId)throws ExpenditureNotFoundException{
+        log.info("Expenditure has been deleted successfully");
+        expenditureService.deleteExpenditureById(expenditureId);
     }
 }

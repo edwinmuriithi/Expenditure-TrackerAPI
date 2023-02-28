@@ -65,4 +65,12 @@ public class ExpenditureServiceImpl implements ExpenditureService {
         }
 
     }
+
+    @Override
+    public void deleteExpenditureById(Long expenditureId) throws ExpenditureNotFoundException {
+        expenditureRepository.findById(expenditureId).orElseThrow(()->new ExpenditureNotFoundException("Expenditure with ID "
+        +expenditureId+" not found"));
+        log.info("Successfully deleted expenditure");
+        expenditureRepository.deleteById(expenditureId);
+    }
 }

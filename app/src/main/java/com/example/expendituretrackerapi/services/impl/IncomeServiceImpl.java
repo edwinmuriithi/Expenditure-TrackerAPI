@@ -47,4 +47,12 @@ public class IncomeServiceImpl implements IncomeService {
             throw new IncomeNotFoundException("Income not found with id: "+incomeId);
         }
     }
+
+    @Override
+    public void deleteIncomeById(Long incomeId) throws IncomeNotFoundException {
+        incomeRepository.findById(incomeId).orElseThrow(()-> new IncomeNotFoundException("Income with ID "+incomeId+" not found"));
+        log.info("Income deleted successfully");
+        incomeRepository.deleteById(incomeId);
+    }
+
 }
