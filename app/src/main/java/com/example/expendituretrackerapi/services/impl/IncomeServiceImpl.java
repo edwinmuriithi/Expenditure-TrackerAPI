@@ -32,7 +32,6 @@ public class IncomeServiceImpl implements IncomeService {
         }else {
             throw new IncomeNotFoundException("budget should not exceed income");
         }
-
     }
 
     @Override
