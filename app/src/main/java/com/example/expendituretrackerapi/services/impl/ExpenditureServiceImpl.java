@@ -65,4 +65,28 @@ public class ExpenditureServiceImpl implements ExpenditureService {
         }
 
     }
-}
+
+    @Override
+    public void deleteExpenditureById(Long expenditureId) throws ExpenditureNotFoundException {
+        expenditureRepository.findById(expenditureId).orElseThrow(()->new ExpenditureNotFoundException("Expenditure with ID "
+        +expenditureId+" not found"));
+        log.info("Successfully deleted expenditure");
+        expenditureRepository.deleteById(expenditureId);
+    }
+
+    @Override
+    public Expenditure updateExpenditureById(Expenditure expenditure, Long expenditureId) throws ExpenditureNotFoundException {
+        Expenditure existingExpenditure = expenditureRepository.findById(expenditureId).orElseThrow(()->
+                new ExpenditureNotFoundException("Expenditure with ID "+expenditureId+" not found"));
+        existingExpenditure.setRent(expenditure.getRent());
+        existingExpenditure.setFood(expenditure.getFood());
+        existingExpenditure.setTransport(expenditure.getTransport());
+        existingExpenditure.setHealth(expenditure.getHealth());
+        existingExpenditure.setSchoolFee(expenditure.getSchoolFee());
+        existingExpenditure.setShopping(expenditure.getShopping());
+        existingExpenditure.setEntertainment(expenditure.getEntertainment());
+        existingExpenditure.setTotal(expenditure.getTotal());
+        Expenditure newExpenditure = expenditureRepository.save(existingExpenditure);
+        log.info("Expenditure updated successfully {}",newExpenditure);
+        return newExpenditure;
+}}

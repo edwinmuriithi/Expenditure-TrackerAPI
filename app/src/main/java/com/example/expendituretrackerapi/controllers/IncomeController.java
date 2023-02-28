@@ -54,8 +54,34 @@ public class IncomeController {
     public ResponseEntity<IncomeDTO>viewIncomeBYId(@PathVariable Long incomeId) throws IncomeNotFoundException {
         Income income = incomeService.findById(incomeId);
         IncomeDTO incomeResponse = modelMapper.map(income, IncomeDTO.class);
-        log.info("Income has been fetched with ID {}",incomeId);
-        return ResponseEntity.ok().body(incomeResponse);
+        if (incomeResponse !=null) {
+            log.info("Income has been fetched with ID {}", incomeId);
+            return ResponseEntity.ok().body(incomeResponse);
+        }else {
+            log.info("Unable to fetch income with ID {}", incomeId);
+            throw new IncomeNotFoundException("Income ID "+incomeId+" does not exist");
+        }
+    }
+
+    @PutMapping("/{incomeId}")
+    public ResponseEntity<IncomeDTO> updateIncomeById(@RequestBody IncomeDTO incomeDTO,@PathVariable Long incomeId)
+        throws IncomeNotFoundException{
+        Income incomeRequest = modelMapper.map(incomeDTO, Income.class);
+        Income income = incomeService.updateIncomeById(incomeRequest, incomeId);
+        IncomeDTO incomeResponse = modelMapper.map(income,IncomeDTO.class);
+        if (incomeResponse !=null){
+            log.info("Income updated Successfully");
+            return ResponseEntity.ok().body(incomeResponse);
+        }else{
+            log.info("Income ID "+incomeId+" not found");
+            throw new IncomeNotFoundException("Update to Income failed");
+        }
+    }
+
+    @DeleteMapping("/{incomeId}")
+    public void deleteIncomeById(@PathVariable Long incomeId)throws IncomeNotFoundException{
+        incomeService.deleteIncomeById(incomeId);
+        log.info("Income deleted successfully");
     }
 
 }

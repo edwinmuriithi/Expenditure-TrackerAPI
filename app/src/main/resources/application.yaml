@@ -8,3 +8,6 @@ datasource:
   url: ${DATABASE_URL:jdbc:h2:mem:finportal}
   username: ${DATABASE_USERNAME:sa}
   password: ${DATABASE_PASSWORD:password}
+server:
+  error:
+    include-messages: always

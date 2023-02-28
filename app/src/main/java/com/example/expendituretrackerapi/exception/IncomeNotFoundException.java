@@ -1,5 +1,6 @@
 package com.example.expendituretrackerapi.exception;
 
+
 public class IncomeNotFoundException extends RuntimeException{
 
     private String message;
