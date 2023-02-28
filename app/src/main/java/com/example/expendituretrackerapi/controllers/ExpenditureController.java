@@ -1,8 +1,11 @@
 package com.example.expendituretrackerapi.controllers;
 
 import com.example.expendituretrackerapi.entities.Expenditure;
+import com.example.expendituretrackerapi.entities.Income;
 import com.example.expendituretrackerapi.entities.dto.ExpenditureDTO;
+import com.example.expendituretrackerapi.entities.dto.IncomeDTO;
 import com.example.expendituretrackerapi.exception.ExpenditureNotFoundException;
+import com.example.expendituretrackerapi.exception.IncomeNotFoundException;
 import com.example.expendituretrackerapi.repositories.ExpenditureRepository;
 import com.example.expendituretrackerapi.repositories.IncomeRepository;
 import com.example.expendituretrackerapi.services.ExpenditureService;
@@ -65,9 +68,25 @@ public class ExpenditureController {
         return ResponseEntity.ok().body(expenditureResponse);
     }
 
+    @PutMapping("/{expenditureId}")
+    public ResponseEntity<ExpenditureDTO> updateExpenditureById(@RequestBody ExpenditureDTO expenditureDTO, @PathVariable Long expenditureId)
+            throws ExpenditureNotFoundException {
+        Expenditure expenditureRequest = modelMapper.map(expenditureDTO, Expenditure.class);
+        Expenditure expenditure = expenditureService.updateExpenditureById(expenditureRequest, expenditureId);
+        ExpenditureDTO expenditureResponse = modelMapper.map(expenditure,ExpenditureDTO.class);
+        if (expenditureResponse !=null){
+            log.info("Expenditure updated Successfully");
+            return ResponseEntity.ok().body(expenditureResponse);
+        }else{
+            log.info("Expenditure ID "+expenditureId+" not found");
+            throw new ExpenditureNotFoundException("Update to Expenditure failed");
+        }
+    }
+
+
     @DeleteMapping("/{expenditureId}")
     public void deleteExpenditureById(@PathVariable Long expenditureId)throws ExpenditureNotFoundException{
-        log.info("Expenditure has been deleted successfully");
         expenditureService.deleteExpenditureById(expenditureId);
+        log.info("Expenditure has been deleted successfully");
     }
 }

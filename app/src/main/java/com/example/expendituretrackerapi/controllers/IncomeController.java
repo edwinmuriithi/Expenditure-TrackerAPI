@@ -63,10 +63,25 @@ public class IncomeController {
         }
     }
 
+    @PutMapping("/{incomeId}")
+    public ResponseEntity<IncomeDTO> updateIncomeById(@RequestBody IncomeDTO incomeDTO,@PathVariable Long incomeId)
+        throws IncomeNotFoundException{
+        Income incomeRequest = modelMapper.map(incomeDTO, Income.class);
+        Income income = incomeService.updateIncomeById(incomeRequest, incomeId);
+        IncomeDTO incomeResponse = modelMapper.map(income,IncomeDTO.class);
+        if (incomeResponse !=null){
+            log.info("Income updated Successfully");
+            return ResponseEntity.ok().body(incomeResponse);
+        }else{
+            log.info("Income ID "+incomeId+" not found");
+            throw new IncomeNotFoundException("Update to Income failed");
+        }
+    }
+
     @DeleteMapping("/{incomeId}")
-    public void deleteIncome(@PathVariable Long incomeId)throws IncomeNotFoundException{
-        log.info("Income deleted successfully");
+    public void deleteIncomeById(@PathVariable Long incomeId)throws IncomeNotFoundException{
         incomeService.deleteIncomeById(incomeId);
+        log.info("Income deleted successfully");
     }
 
 }

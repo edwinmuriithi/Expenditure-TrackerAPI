@@ -9,7 +9,8 @@ import java.util.List;
 @Component
 public interface IncomeService {
     Income createIncome(Income income) throws IncomeNotFoundException;
-    List<Income> viewIncome();
+    List<Income> viewIncome() throws IncomeNotFoundException;
     Income findById(Long incomeId) throws IncomeNotFoundException;
     void deleteIncomeById(Long incomeId)throws IncomeNotFoundException;
+    Income updateIncomeById(Income income,Long incomeId) throws IncomeNotFoundException;
 }

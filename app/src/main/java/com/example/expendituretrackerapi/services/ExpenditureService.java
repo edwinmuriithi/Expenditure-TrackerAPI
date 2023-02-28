@@ -12,4 +12,5 @@ public interface ExpenditureService {
     List<Expenditure> viewExpenditure();
     Expenditure findById(Long expenditureId) throws ExpenditureNotFoundException;
     void deleteExpenditureById(Long expenditureId)throws ExpenditureNotFoundException;
+    Expenditure updateExpenditureById(Expenditure expenditure, Long expenditureId)throws ExpenditureNotFoundException;
 }
