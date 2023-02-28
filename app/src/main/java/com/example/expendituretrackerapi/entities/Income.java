@@ -4,11 +4,11 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
-import java.util.Date;
+
 
 @Entity
 @Data
@@ -19,9 +19,10 @@ public class Income {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @NonNull
+
+    @NotNull(message = "should not be blank")
     private Integer income;
-    @NonNull
+    @NotNull(message = "Budget should not be blank")
     private Integer budget;
     @Column(nullable = false)
     @JsonFormat(pattern="yyyy-MM-dd")
