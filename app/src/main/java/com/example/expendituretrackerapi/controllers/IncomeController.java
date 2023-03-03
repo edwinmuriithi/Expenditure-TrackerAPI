@@ -58,7 +58,7 @@ public class IncomeController {
             log.info("Income has been fetched with ID {}", incomeId);
             return ResponseEntity.ok().body(incomeResponse);
         }else {
-            log.info("Unable to fetch income with ID {}", incomeId);
+            log.error("Unable to fetch income with ID {}", incomeId);
             throw new IncomeNotFoundException("Income ID "+incomeId+" does not exist");
         }
     }
@@ -73,7 +73,7 @@ public class IncomeController {
             log.info("Income updated Successfully");
             return ResponseEntity.ok().body(incomeResponse);
         }else{
-            log.info("Income ID "+incomeId+" not found");
+            log.error("Income ID "+incomeId+" not found");
             throw new IncomeNotFoundException("Update to Income failed");
         }
     }

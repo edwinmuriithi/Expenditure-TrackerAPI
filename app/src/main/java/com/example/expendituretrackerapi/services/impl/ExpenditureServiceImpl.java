@@ -51,7 +51,7 @@ public class ExpenditureServiceImpl implements ExpenditureService {
     public List<Expenditure> viewExpenditure() throws ExpenditureNotFoundException{
         List<Expenditure> expenditures = expenditureRepository.findAll();
         if (expenditures.isEmpty()){
-            log.info("Expenditure is empty");
+            log.error("Expenditure is empty");
             throw new ExpenditureNotFoundException("There is no expenditure which has been saved");
         }   else {
             log.info("Expenditure has been retrieved successfully");
@@ -66,7 +66,7 @@ public class ExpenditureServiceImpl implements ExpenditureService {
             log.info("Fetched Expenditure successfully");
             return expenditure.get();
         }else {
-            log.info("Expenditure ID not found");
+            log.error("Expenditure ID not found");
             throw new ExpenditureNotFoundException("Expenditure not found with ID: " + expenditureId);
         }
 
