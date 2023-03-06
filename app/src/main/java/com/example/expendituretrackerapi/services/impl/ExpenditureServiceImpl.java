@@ -41,10 +41,14 @@ public class ExpenditureServiceImpl implements ExpenditureService {
         expenditure.setSchoolFee(expenditure.getSchoolFee());
         expenditure.setShopping(expenditure.getShopping());
         expenditure.setEntertainment(expenditure.getEntertainment());
-        expenditure.setTotal(expenditure.getTotal());
         expenditure.setIncome(income);
         Expenditure newExpenditure = expenditureRepository.save(expenditure);
         return newExpenditure;
+    }
+
+    @Override
+    public Expenditure getTotalExpenditure(Expenditure expenditure) {
+        return null;
     }
 
     @Override
@@ -85,7 +89,6 @@ public class ExpenditureServiceImpl implements ExpenditureService {
         existingExpenditure.setSchoolFee(expenditure.getSchoolFee());
         existingExpenditure.setShopping(expenditure.getShopping());
         existingExpenditure.setEntertainment(expenditure.getEntertainment());
-        existingExpenditure.setTotal(expenditure.getTotal());
         Expenditure newExpenditure = expenditureRepository.save(existingExpenditure);
         log.info("Expenditure updated successfully {}",newExpenditure);
         return newExpenditure;

@@ -59,6 +59,8 @@ public class ExpenditureController {
                 .map(expenditure -> modelMapper.map(expenditure, ExpenditureDTO.class))
                 .collect(Collectors.toList()));
     }
+//    @GetMapping("/totalExpenditure")
+//
 
     @GetMapping("/{expenditureId}")
     public ResponseEntity<ExpenditureDTO>viewById(@PathVariable Long expenditureId){
