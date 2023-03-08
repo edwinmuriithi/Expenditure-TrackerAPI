@@ -78,7 +78,7 @@ public class ExpenditureController {
             log.info("Expenditure updated Successfully");
             return ResponseEntity.ok().body(expenditureResponse);
         }else{
-            log.info("Expenditure ID "+expenditureId+" not found");
+            log.error("Expenditure ID "+expenditureId+" not found");
             throw new ExpenditureNotFoundException("Update to Expenditure failed");
         }
     }
