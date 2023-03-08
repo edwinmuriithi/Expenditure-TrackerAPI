@@ -30,6 +30,7 @@ public class IncomeServiceImpl implements IncomeService {
             Income newIncome = incomeRepository.save(income);
             return newIncome;
         } else {
+            log.error("Budget has exceeded Income");
             throw new IncomeNotFoundException("budget should not exceed income");
         }
     }
@@ -38,7 +39,7 @@ public class IncomeServiceImpl implements IncomeService {
         public List<Income> viewIncome () throws IncomeNotFoundException {
             List<Income> income = incomeRepository.findAll();
             if (income.isEmpty()) {
-                log.info("Income is empty");
+                log.error("Income is empty");
                 throw new IncomeNotFoundException("There is no income which has been saved");
             } else {
                 log.info("Income is retrieved successfully");
