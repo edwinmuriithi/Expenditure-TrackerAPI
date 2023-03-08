@@ -47,8 +47,8 @@ public class ExpenditureServiceImpl implements ExpenditureService {
     }
 
     @Override
-    public Expenditure getTotalExpenditure(Expenditure expenditure) {
-        return null;
+    public int getTotalExpenditure(Expenditure expenditure) {
+        return expenditure.getTotal();
     }
 
     @Override

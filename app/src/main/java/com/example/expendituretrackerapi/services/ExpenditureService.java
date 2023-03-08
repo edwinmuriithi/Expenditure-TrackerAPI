@@ -9,7 +9,7 @@ import java.util.List;
 @Component
 public interface ExpenditureService {
     Expenditure createExpenditure(Expenditure expenditure,Long incomeId);
-    Expenditure getTotalExpenditure(Expenditure expenditure);
+    int getTotalExpenditure(Expenditure expenditure);
     List<Expenditure> viewExpenditure();
     Expenditure findById(Long expenditureId) throws ExpenditureNotFoundException;
     void deleteExpenditureById(Long expenditureId)throws ExpenditureNotFoundException;

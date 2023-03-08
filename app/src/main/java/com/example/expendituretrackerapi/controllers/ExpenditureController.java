@@ -1,11 +1,8 @@
 package com.example.expendituretrackerapi.controllers;
 
 import com.example.expendituretrackerapi.entities.Expenditure;
-import com.example.expendituretrackerapi.entities.Income;
 import com.example.expendituretrackerapi.entities.dto.ExpenditureDTO;
-import com.example.expendituretrackerapi.entities.dto.IncomeDTO;
 import com.example.expendituretrackerapi.exception.ExpenditureNotFoundException;
-import com.example.expendituretrackerapi.exception.IncomeNotFoundException;
 import com.example.expendituretrackerapi.repositories.ExpenditureRepository;
 import com.example.expendituretrackerapi.repositories.IncomeRepository;
 import com.example.expendituretrackerapi.services.ExpenditureService;
@@ -59,8 +56,11 @@ public class ExpenditureController {
                 .map(expenditure -> modelMapper.map(expenditure, ExpenditureDTO.class))
                 .collect(Collectors.toList()));
     }
-//    @GetMapping("/totalExpenditure")
-//
+    @GetMapping("/totalExpenditure")
+    public int getTotal(Expenditure expenditure){
+        return expenditureService.getTotalExpenditure(expenditure);
+    }
+
 
     @GetMapping("/{expenditureId}")
     public ResponseEntity<ExpenditureDTO>viewById(@PathVariable Long expenditureId){
@@ -84,7 +84,6 @@ public class ExpenditureController {
             throw new ExpenditureNotFoundException("Update to Expenditure failed");
         }
     }
-
 
     @DeleteMapping("/{expenditureId}")
     public void deleteExpenditureById(@PathVariable Long expenditureId)throws ExpenditureNotFoundException{
