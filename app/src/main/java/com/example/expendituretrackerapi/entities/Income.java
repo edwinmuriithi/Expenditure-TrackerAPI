@@ -21,9 +21,9 @@ public class Income {
     private Long id;
 
     @NotNull(message = "should not be blank")
-    private Integer income;
+    private int income;
     @NotNull(message = "Budget should not be blank")
-    private Integer budget;
+    private int budget;
     @Column(nullable = false)
     @JsonFormat(pattern="yyyy-MM-dd")
     private LocalDate createdDate;

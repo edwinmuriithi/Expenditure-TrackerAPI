@@ -8,8 +8,8 @@ import java.time.LocalDate;
 @Data
 public class IncomeDTO {
     private Long id;
-    private Integer income;
-    private Integer budget;
+    private int income;
+    private int budget;
     @JsonFormat(pattern="yyyy-MM-dd ")
     private LocalDate createdDate;
 
