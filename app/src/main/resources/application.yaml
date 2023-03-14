@@ -11,3 +11,4 @@ datasource:
 server:
   error:
     include-messages: always
+  port: 8081

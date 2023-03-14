@@ -46,10 +46,11 @@ public class ExpenditureServiceImpl implements ExpenditureService {
         return newExpenditure;
     }
 
-    @Override
-    public int getTotalExpenditure(Expenditure expenditure) {
-        return expenditure.getTotal();
-    }
+//    @Override
+//    public int getTotalExpenditure(Expenditure expenditure) {
+//       // expenditure.addAttribute(new Expenditure());
+//        return expenditure.getTotal();
+//    }
 
 
     public List<Expenditure> viewExpenditure() throws ExpenditureNotFoundException{

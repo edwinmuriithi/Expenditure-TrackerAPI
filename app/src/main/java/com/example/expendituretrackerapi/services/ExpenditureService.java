@@ -10,7 +10,7 @@ import java.util.List;
 public interface ExpenditureService {
     Expenditure createExpenditure(Expenditure expenditure,Long incomeId);
 
-    int getTotalExpenditure(Expenditure expenditure);
+    //int getTotalExpenditure(Expenditure expenditure);
 
     List<Expenditure> viewExpenditure() throws ExpenditureNotFoundException;
 

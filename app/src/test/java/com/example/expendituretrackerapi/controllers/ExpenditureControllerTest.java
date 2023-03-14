@@ -62,7 +62,9 @@ class ExpenditureControllerTest {
     when(modelMapper.map(expenditureDTO, Expenditure.class)).thenReturn(expenditure);
     //when(expenditureService.createExpenditure(any(Expenditure.class))).thenReturn(expenditure);
     when(modelMapper.map(expenditure, ExpenditureDTO.class)).thenReturn(expenditureDTO);
-
+}
+@Test
+    public void viewAll(){
 
 }
 
