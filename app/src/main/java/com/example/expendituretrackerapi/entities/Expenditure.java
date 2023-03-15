@@ -17,13 +17,13 @@ public class Expenditure {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private int rent;
-    private int food;
-    private int transport;
-    private int health;
-    private int schoolFee;
-    private int shopping;
-    private int entertainment;
+    private Integer rent;
+    private Integer food;
+    private Integer transport;
+    private Integer health;
+    private Integer schoolFee;
+    private Integer shopping;
+    private Integer entertainment;
 
     @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "income_id")
@@ -32,7 +32,8 @@ public class Expenditure {
     @JsonFormat(pattern="yyyy-MM-dd")
     private LocalDate createdDate;
 
-    public int getTotal(){
+
+    public Integer getTotal(){
         return rent+food+transport+health+schoolFee+shopping+entertainment;
     }
     @PrePersist
