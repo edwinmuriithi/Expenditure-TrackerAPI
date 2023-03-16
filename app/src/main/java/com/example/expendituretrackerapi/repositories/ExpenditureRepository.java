@@ -11,4 +11,5 @@ public interface ExpenditureRepository extends JpaRepository<Expenditure, Long> 
 
     Optional<Expenditure> findById(Long expenditureId);
 
+
 }

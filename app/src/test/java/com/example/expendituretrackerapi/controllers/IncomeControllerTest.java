@@ -100,7 +100,6 @@ class IncomeControllerTest extends AbstractTest{
         // Arrange
         List<Income> incomes = new ArrayList<>();
         incomes.add(new Income());
-        incomes.add(new Income());
         when(incomeService.viewIncome()).thenReturn(incomes);
         List<IncomeDTO> incomeDTOs = new ArrayList<>();
         incomeDTOs.add(new IncomeDTO());

@@ -2,13 +2,14 @@ package com.example.expendituretrackerapi.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
 
+@Builder
 @Data
 @Entity
 @Table(name = "expenditure")
@@ -25,7 +26,7 @@ public class Expenditure {
     private Integer schoolFee;
     private Integer shopping;
     private Integer entertainment;
-    private Integer total;
+
     @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "income_id")
     private Income income;
@@ -33,6 +34,10 @@ public class Expenditure {
     @JsonFormat(pattern="yyyy-MM-dd")
     private LocalDate createdDate;
 
+
+    public Integer getTotal(){
+        return rent+food+transport+health+schoolFee+shopping+entertainment;
+    }
     @PrePersist
     private void onCreate(){
         createdDate = LocalDate.now();
