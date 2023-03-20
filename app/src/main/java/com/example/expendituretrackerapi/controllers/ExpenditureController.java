@@ -9,6 +9,7 @@ import com.example.expendituretrackerapi.services.ExpenditureService;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
@@ -20,20 +21,26 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/expenditure")
 @Slf4j
+@DependsOn("incomeRepository")
 public class ExpenditureController {
+    @Autowired
+    private IncomeRepository incomeRepository;
     @Autowired
     private ExpenditureService expenditureService;
     @Autowired
     private ExpenditureRepository expenditureRepository;
     @Autowired
     private ModelMapper modelMapper;
-    @Autowired
-    private IncomeRepository incomeRepository;
+
 
     public ExpenditureController(ExpenditureService expenditureService, ExpenditureRepository expenditureRepository,IncomeRepository incomeRepository) {
         this.expenditureService = expenditureService;
         this.expenditureRepository = expenditureRepository;
         this.incomeRepository = incomeRepository;
+    }
+
+    public ExpenditureController() {
+
     }
 
     @PostMapping("/{incomeId}")
