@@ -3,12 +3,9 @@ package com.example.expendituretrackerapi.controllers;
 import com.example.expendituretrackerapi.entities.Expenditure;
 import com.example.expendituretrackerapi.exception.ExpenditureNotFoundException;
 import com.example.expendituretrackerapi.repositories.ExpenditureRepository;
-import com.example.expendituretrackerapi.repositories.IncomeRepository;
 import com.example.expendituretrackerapi.services.ExpenditureService;
-import com.example.expendituretrackerapi.services.IncomeService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.modelmapper.ModelMapper;
@@ -17,7 +14,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 @WebMvcTest(ExpenditureController.class)
@@ -56,3 +52,4 @@ class ExpenditureControllerTest extends AbstractTest {
     }
 
 }
+
