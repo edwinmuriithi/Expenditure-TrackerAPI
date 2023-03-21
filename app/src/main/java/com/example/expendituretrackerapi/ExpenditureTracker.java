@@ -9,7 +9,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @EnableAutoConfiguration
 @SpringBootApplication
-@EnableJpaRepositories("com.example.expendituretrackerapi.repositories")
 public class ExpenditureTracker {
 	@Bean
 	public ModelMapper modelMapper(){
