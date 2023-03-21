@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 
@@ -22,9 +23,9 @@ public class Income {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotBlank(message = "should not be blank")
+    @NotNull(message = "should not be blank")
     private Integer income;
-    @NotBlank(message = "Budget should not be blank")
+    @NotNull(message = "Budget should not be blank")
     private Integer budget;
     @Column(nullable = false)
     @JsonFormat(pattern="yyyy-MM-dd")
