@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/expenditure")
 @Slf4j
-@DependsOn("incomeRepository")
+//@DependsOn("incomeRepository")
 public class ExpenditureController {
     @Autowired
     private IncomeRepository incomeRepository;
