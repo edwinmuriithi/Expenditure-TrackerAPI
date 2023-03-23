@@ -70,23 +70,23 @@ class ExpenditureControllerTest extends AbstractTest {
     }
     @Test
     public void createExpenditure()throws Exception{
-//        ExpenditureDTO expenditureDTO = new ExpenditureDTO();
-//        Expenditure expenditure = new Expenditure();
-//        when(modelMapper.map(expenditureDTO, Expenditure.class)).thenReturn(expenditure);
-//        when(expenditureService.createExpenditure(any(Expenditure.class),eq(1L))).thenReturn(expenditure);
-//        when(modelMapper.map(expenditure, ExpenditureDTO.class)).thenReturn(expenditureDTO);
-//
-//        // Act
-//        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/expenditure")
-//                        .contentType(MediaType.APPLICATION_JSON)
-//                        .content(new ObjectMapper().writeValueAsString(expenditureDTO)))
-//                .andExpect(MockMvcResultMatchers.status().isCreated())
-//                .andReturn();
-//
-//        // Assert
-//        String responseContent = mvcResult.getResponse().getContentAsString();
-//        ExpenditureDTO expenditureResponse = new ObjectMapper().readValue(responseContent, ExpenditureDTO.class);
-//        assertNotNull(expenditureResponse);
+        ExpenditureDTO expenditureDTO = new ExpenditureDTO();
+        Expenditure expenditure = new Expenditure();
+        when(modelMapper.map(expenditureDTO, Expenditure.class)).thenReturn(expenditure);
+        when(expenditureService.createExpenditure(any(Expenditure.class),eq(1L))).thenReturn(expenditure);
+        when(modelMapper.map(expenditure, ExpenditureDTO.class)).thenReturn(expenditureDTO);
+
+        // Act
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/expenditure")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(new ObjectMapper().writeValueAsString(expenditureDTO)))
+                .andExpect(MockMvcResultMatchers.status().isCreated())
+                .andReturn();
+
+        // Assert
+        String responseContent = mvcResult.getResponse().getContentAsString();
+        ExpenditureDTO expenditureResponse = new ObjectMapper().readValue(responseContent, ExpenditureDTO.class);
+        assertNotNull(expenditureResponse);
 
     }
 
