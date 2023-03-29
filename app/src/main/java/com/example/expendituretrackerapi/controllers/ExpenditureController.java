@@ -48,13 +48,13 @@ public class ExpenditureController {
         Expenditure expenditureRequest = modelMapper.map(expenditureDTO,Expenditure.class);
         Expenditure expenditure = expenditureService.createExpenditure(expenditureRequest,incomeId);
         ExpenditureDTO expenditureResponse = modelMapper.map(expenditure, ExpenditureDTO.class);
-        if(expenditure == null){
-            log.error("Expenditure not saved");
-            throw new ExpenditureNotFoundException("Expenditure not saved");
-        }else{
-            log.info("Expenditure saved successfully");
-        return new ResponseEntity<ExpenditureDTO>(expenditureResponse, HttpStatus.CREATED);
-    }
+//        if(expenditure != null){
+//            log.info("Expenditure saved successfully");
+            return new ResponseEntity<ExpenditureDTO>(expenditureResponse, HttpStatus.CREATED);
+//        }else{
+//            log.error("Expenditure not saved");
+//            throw new ExpenditureNotFoundException("Expenditure not saved");
+//    }
     }
 
     @GetMapping

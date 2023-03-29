@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Objects;
 
 @Builder
 @Data
@@ -42,4 +43,5 @@ public class Expenditure {
     private void onCreate(){
         createdDate = LocalDate.now();
     }
+
 }

@@ -42,8 +42,7 @@ public class ExpenditureServiceImpl implements ExpenditureService {
         expenditure.setShopping(expenditure.getShopping());
         expenditure.setEntertainment(expenditure.getEntertainment());
         expenditure.setIncome(income);
-        Expenditure newExpenditure = expenditureRepository.save(expenditure);
-        return newExpenditure;
+        return expenditureRepository.save(expenditure);
     }
 
 
