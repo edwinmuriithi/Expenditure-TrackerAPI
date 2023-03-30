@@ -29,7 +29,6 @@ class ExpenditureRepositoryTest {
                 .transport(3000)
                 .health(90000)
                 .entertainment(1000)
-//                .income(new Income(1L,2000000,300000, LocalDate.now()))
                 .createdDate(LocalDate.now())
                 .schoolFee(40000)
                 .build();
