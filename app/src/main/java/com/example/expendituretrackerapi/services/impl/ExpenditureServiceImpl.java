@@ -42,11 +42,8 @@ public class ExpenditureServiceImpl implements ExpenditureService {
         expenditure.setShopping(expenditure.getShopping());
         expenditure.setEntertainment(expenditure.getEntertainment());
         expenditure.setIncome(income);
-        Expenditure newExpenditure = expenditureRepository.save(expenditure);
-        return newExpenditure;
+        return expenditureRepository.save(expenditure);
     }
-
-
 
     public List<Expenditure> viewExpenditure() throws ExpenditureNotFoundException{
         List<Expenditure> expenditures = expenditureRepository.findAll();
@@ -94,4 +91,10 @@ public class ExpenditureServiceImpl implements ExpenditureService {
         Expenditure newExpenditure = expenditureRepository.save(existingExpenditure);
         log.info("Expenditure updated successfully {}",newExpenditure);
         return newExpenditure;
-}}
+}
+    @Override
+    public Integer getTotalExpenditureById(Long expenditureId){
+        return expenditureRepository.getTotalExpenditureById(expenditureId);
+    }
+}
+

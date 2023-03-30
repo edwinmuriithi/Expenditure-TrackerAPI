@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Objects;
 
 @Builder
 @Data
@@ -34,7 +35,6 @@ public class Expenditure {
     @JsonFormat(pattern="yyyy-MM-dd")
     private LocalDate createdDate;
 
-
     public Integer getTotal(){
         return rent+food+transport+health+schoolFee+shopping+entertainment;
     }
@@ -42,4 +42,5 @@ public class Expenditure {
     private void onCreate(){
         createdDate = LocalDate.now();
     }
+
 }

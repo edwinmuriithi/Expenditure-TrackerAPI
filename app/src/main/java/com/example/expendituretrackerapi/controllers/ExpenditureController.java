@@ -48,13 +48,13 @@ public class ExpenditureController {
         Expenditure expenditureRequest = modelMapper.map(expenditureDTO,Expenditure.class);
         Expenditure expenditure = expenditureService.createExpenditure(expenditureRequest,incomeId);
         ExpenditureDTO expenditureResponse = modelMapper.map(expenditure, ExpenditureDTO.class);
-        if(expenditure == null){
-            log.error("Expenditure not saved");
-            throw new ExpenditureNotFoundException("Expenditure not saved");
-        }else{
-            log.info("Expenditure saved successfully");
-        return new ResponseEntity<ExpenditureDTO>(expenditureResponse, HttpStatus.CREATED);
-    }
+//        if(expenditure != null){
+//            log.info("Expenditure saved successfully");
+            return new ResponseEntity<ExpenditureDTO>(expenditureResponse, HttpStatus.CREATED);
+//        }else{
+//            log.error("Expenditure not saved");
+//            throw new ExpenditureNotFoundException("Expenditure not saved");
+//    }
     }
 
     @GetMapping
@@ -64,12 +64,11 @@ public class ExpenditureController {
                 .map(expenditure -> modelMapper.map(expenditure, ExpenditureDTO.class))
                 .collect(Collectors.toList()));
     }
-    @GetMapping("/totalExpenditure")
-    public int getTotal(Model model){
-         model.addAttribute(new Expenditure());
-         return getTotal(model);
+    @GetMapping("/totalExpenditure/{expenditureId}")
+   public ResponseEntity<Integer>getTotalExpenditureById(@PathVariable Long expenditureId){
+        Integer total = expenditureService.getTotalExpenditureById(expenditureId);
+        return ResponseEntity.ok(total);
     }
-
 
     @GetMapping("/{expenditureId}")
     public ResponseEntity<ExpenditureDTO>viewById(@PathVariable Long expenditureId){
