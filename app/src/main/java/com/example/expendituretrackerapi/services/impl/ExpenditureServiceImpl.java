@@ -45,8 +45,6 @@ public class ExpenditureServiceImpl implements ExpenditureService {
         return expenditureRepository.save(expenditure);
     }
 
-
-
     public List<Expenditure> viewExpenditure() throws ExpenditureNotFoundException{
         List<Expenditure> expenditures = expenditureRepository.findAll();
         if (expenditures.isEmpty()){
@@ -93,4 +91,10 @@ public class ExpenditureServiceImpl implements ExpenditureService {
         Expenditure newExpenditure = expenditureRepository.save(existingExpenditure);
         log.info("Expenditure updated successfully {}",newExpenditure);
         return newExpenditure;
-}}
+}
+    @Override
+    public Integer getTotalExpenditureById(Long expenditureId){
+        return expenditureRepository.getTotalExpenditureById(expenditureId);
+    }
+}
+

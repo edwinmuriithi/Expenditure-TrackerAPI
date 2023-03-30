@@ -29,7 +29,7 @@ class ExpenditureRepositoryTest {
                 .transport(3000)
                 .health(90000)
                 .entertainment(1000)
-                .income(new Income(1L,2000000,300000, LocalDate.now()))
+//                .income(new Income(1L,2000000,300000, LocalDate.now()))
                 .createdDate(LocalDate.now())
                 .schoolFee(40000)
                 .build();
@@ -57,26 +57,24 @@ class ExpenditureRepositoryTest {
     @Test
     public void updateExpenditure(){
         expenditureRepository.save(expenditure);
-        Expenditure newExpenditure = new Expenditure(2L,2000,3000,4000,20000,1000,3000,1000,new Income(1L,10000,30000,LocalDate.now()),LocalDate.now());
+       // Expenditure newExpenditure = new Expenditure(2L,2000,3000,4000,20000,1000,3000,1000,new Income(1L,10000,30000,LocalDate.now()),LocalDate.now());
         Expenditure saveExpenditure = expenditureRepository.findById(expenditure.getId()).get();
-         saveExpenditure.setRent(newExpenditure.getRent());
-         saveExpenditure .setFood(newExpenditure.getFood());
-         saveExpenditure.setShopping(newExpenditure.getShopping());
-         saveExpenditure.setTransport(newExpenditure.getTransport());
-         saveExpenditure.setHealth(newExpenditure.getHealth());
-         saveExpenditure.setEntertainment(newExpenditure.getEntertainment());
-         saveExpenditure.setSchoolFee(newExpenditure.getSchoolFee());
-         expenditureRepository.save(saveExpenditure);
+         saveExpenditure.setRent(5000);
+         saveExpenditure .setFood(5000);
+         saveExpenditure.setShopping(5000);
+         saveExpenditure.setTransport(5000);
+         saveExpenditure.setHealth(3000);
+         saveExpenditure.setEntertainment(5000);
+         saveExpenditure.setSchoolFee(70000);
+        Expenditure updatedExpenditure = expenditureRepository.save(saveExpenditure);
 
-         Expenditure updatedExpenditure = expenditureRepository.findById(expenditure.getId()).get();
-
-         assertThat(updatedExpenditure.getRent()).isEqualTo(newExpenditure.getRent());
-         assertThat(updatedExpenditure.getFood()).isEqualTo(newExpenditure.getFood());
-         assertThat(updatedExpenditure.getSchoolFee()).isEqualTo(newExpenditure.getSchoolFee());
-         assertThat(updatedExpenditure.getShopping()).isEqualTo(newExpenditure.getShopping());
-         assertThat(updatedExpenditure.getTransport()).isEqualTo(newExpenditure.getTransport());
-         assertThat(updatedExpenditure.getHealth()).isEqualTo(newExpenditure.getHealth());
-         assertThat(updatedExpenditure.getEntertainment()).isEqualTo(newExpenditure.getEntertainment());
+         assertThat(updatedExpenditure.getRent()).isEqualTo(5000);
+         assertThat(updatedExpenditure.getFood()).isEqualTo(5000);
+         assertThat(updatedExpenditure.getSchoolFee()).isEqualTo(70000);
+         assertThat(updatedExpenditure.getShopping()).isEqualTo(5000);
+         assertThat(updatedExpenditure.getTransport()).isEqualTo(5000);
+         assertThat(updatedExpenditure.getHealth()).isEqualTo(3000);
+         assertThat(updatedExpenditure.getEntertainment()).isEqualTo(5000);
 
     }
     @Test

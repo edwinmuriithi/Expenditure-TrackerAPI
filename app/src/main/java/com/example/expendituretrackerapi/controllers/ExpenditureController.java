@@ -64,12 +64,11 @@ public class ExpenditureController {
                 .map(expenditure -> modelMapper.map(expenditure, ExpenditureDTO.class))
                 .collect(Collectors.toList()));
     }
-    @GetMapping("/totalExpenditure")
-    public int getTotal(Model model){
-         model.addAttribute(new Expenditure());
-         return getTotal(model);
+    @GetMapping("/totalExpenditure/{expenditureId}")
+   public ResponseEntity<Integer>getTotalExpenditureById(@PathVariable Long expenditureId){
+        Integer total = expenditureService.getTotalExpenditureById(expenditureId);
+        return ResponseEntity.ok(total);
     }
-
 
     @GetMapping("/{expenditureId}")
     public ResponseEntity<ExpenditureDTO>viewById(@PathVariable Long expenditureId){

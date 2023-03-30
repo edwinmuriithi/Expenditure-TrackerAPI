@@ -35,7 +35,6 @@ public class Expenditure {
     @JsonFormat(pattern="yyyy-MM-dd")
     private LocalDate createdDate;
 
-
     public Integer getTotal(){
         return rent+food+transport+health+schoolFee+shopping+entertainment;
     }
