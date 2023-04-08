@@ -27,6 +27,7 @@ public class Expenditure {
     private Integer schoolFee;
     private Integer shopping;
     private Integer entertainment;
+    private Integer total;
 
     @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "income_id")

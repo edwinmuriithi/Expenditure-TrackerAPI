@@ -42,6 +42,7 @@ public class ExpenditureServiceImpl implements ExpenditureService {
         expenditure.setShopping(expenditure.getShopping());
         expenditure.setEntertainment(expenditure.getEntertainment());
         expenditure.setIncome(income);
+        expenditure.setTotal(expenditure.getTotal());
         return expenditureRepository.save(expenditure);
     }
 
@@ -88,6 +89,7 @@ public class ExpenditureServiceImpl implements ExpenditureService {
         existingExpenditure.setSchoolFee(expenditure.getSchoolFee());
         existingExpenditure.setShopping(expenditure.getShopping());
         existingExpenditure.setEntertainment(expenditure.getEntertainment());
+        existingExpenditure.setTotal(expenditure.getTotal());
         Expenditure newExpenditure = expenditureRepository.save(existingExpenditure);
         log.info("Expenditure updated successfully {}",newExpenditure);
         return newExpenditure;
@@ -96,5 +98,8 @@ public class ExpenditureServiceImpl implements ExpenditureService {
     public Integer getTotalExpenditureById(Long expenditureId){
         return expenditureRepository.getTotalExpenditureById(expenditureId);
     }
+//    @Override
+//    public Double calculatePercentage(){
+//    }
 }
 

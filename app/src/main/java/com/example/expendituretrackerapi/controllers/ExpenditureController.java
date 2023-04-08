@@ -69,6 +69,10 @@ public class ExpenditureController {
         Integer total = expenditureService.getTotalExpenditureById(expenditureId);
         return ResponseEntity.ok(total);
     }
+//    @GetMapping("/getPercentages/{expenditureId}")
+//    public ResponseEntity<Integer> getExpenditurePercentage(){
+//       return ResponseEntity.ok(int);
+//    }
 
     @GetMapping("/{expenditureId}")
     public ResponseEntity<ExpenditureDTO>viewById(@PathVariable Long expenditureId){
