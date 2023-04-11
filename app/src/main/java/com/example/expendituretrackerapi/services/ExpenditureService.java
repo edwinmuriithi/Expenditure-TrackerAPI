@@ -5,6 +5,7 @@ import com.example.expendituretrackerapi.exception.ExpenditureNotFoundException;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Map;
 
 @Component
 public interface ExpenditureService {
@@ -13,12 +14,12 @@ public interface ExpenditureService {
     //int getTotalExpenditure(Expenditure expenditure);
 
     List<Expenditure> viewExpenditure() throws ExpenditureNotFoundException;
-    Integer getTotalExpenditureById(Long expenditureID);
+   // Integer getTotalExpenditureById(Long expenditureID);
 
     Expenditure findById(Long expenditureId) throws ExpenditureNotFoundException;
     void deleteExpenditureById(Long expenditureId)throws ExpenditureNotFoundException;
     Expenditure updateExpenditureById(Expenditure expenditure, Long expenditureId)throws ExpenditureNotFoundException;
 
 
-
+    Map<Long,Double> calculatePercentage();
 }
