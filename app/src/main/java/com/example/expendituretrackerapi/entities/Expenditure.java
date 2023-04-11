@@ -36,41 +36,41 @@ public class Expenditure {
     @JsonFormat(pattern="yyyy-MM-dd")
     private LocalDate createdDate;
 
-    private  Integer rentPercentage;
-    private Integer foodPercentage;
-    private Integer transportPercentage;
-    private Integer healthPercentage;
-    private Integer schoolFeePercentage;
-    private Integer shoppingPercentage;
-    private Integer entertainmentPercentage;
+    private  Double rentPercentage;
+    private  Double foodPercentage;
+    private  Double transportPercentage;
+    private  Double healthPercentage;
+    private  Double schoolFeePercentage;
+    private  Double shoppingPercentage;
+    private  Double entertainmentPercentage;
 
 
-    public Integer getRentPercentage() {
-        return (rent*100)/total;
+    public  Double getRentPercentage() {
+        return (double) ((rent*100)/total);
     }
 
-    public Integer getFoodPercentage() {
-        return (food*100)/total;
+    public  Double getFoodPercentage() {
+        return (double) ((food*100)/total);
     }
 
-    public Integer getTransportPercentage() {
-        return (transport*100)/total;
+    public  Double getTransportPercentage() {
+        return (double) (transport*100)/total;
     }
 
-    public Integer getHealthPercentage() {
-        return (health*100)/total;
+    public  Double getHealthPercentage() {
+        return (double) (health*100)/total;
     }
 
-    public Integer getSchoolFeePercentage() {
-        return (schoolFee*100)/total;
+    public  Double getSchoolFeePercentage() {
+        return (double) (schoolFee*100)/total;
     }
 
-    public Integer getShoppingPercentage() {
-        return (shopping*100)/total;
+    public  Double getShoppingPercentage() {
+        return (double) (shopping*100)/total;
     }
 
-    public Integer getEntertainmentPercentage() {
-        return (entertainment*100)/total;
+    public  Double getEntertainmentPercentage() {
+        return (double) (entertainment*100)/total;
     }
 
     public Integer getTotal(){
