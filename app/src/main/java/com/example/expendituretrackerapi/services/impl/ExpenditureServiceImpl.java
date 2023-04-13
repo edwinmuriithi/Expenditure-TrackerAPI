@@ -13,7 +13,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -42,7 +44,22 @@ public class ExpenditureServiceImpl implements ExpenditureService {
         expenditure.setShopping(expenditure.getShopping());
         expenditure.setEntertainment(expenditure.getEntertainment());
         expenditure.setIncome(income);
-        return expenditureRepository.save(expenditure);
+        expenditure.setTotal(expenditure.getTotal());
+
+        //Getting percentages
+        expenditure.setRentPercentage(expenditure.getRentPercentage());
+        expenditure.setFoodPercentage(expenditure.getFoodPercentage());
+        expenditure.setTransportPercentage(expenditure.getTransportPercentage());
+        expenditure.setHealthPercentage(expenditure.getHealthPercentage());
+        expenditure.setSchoolFeePercentage(expenditure.getSchoolFeePercentage());
+        expenditure.setShoppingPercentage(expenditure.getShoppingPercentage());
+        expenditure.setEntertainmentPercentage(expenditure.getEntertainmentPercentage());
+        if (expenditure.getTotal() > income.getBudget() ){
+            log.error("Budget exceeded total expenditure");
+            throw new IncomeNotFoundException("Budget should not exceed your total expenditure");
+        }else {
+            return expenditureRepository.save(expenditure);
+        }
     }
 
     public List<Expenditure> viewExpenditure() throws ExpenditureNotFoundException{
@@ -88,13 +105,25 @@ public class ExpenditureServiceImpl implements ExpenditureService {
         existingExpenditure.setSchoolFee(expenditure.getSchoolFee());
         existingExpenditure.setShopping(expenditure.getShopping());
         existingExpenditure.setEntertainment(expenditure.getEntertainment());
+        existingExpenditure.setTotal(expenditure.getTotal());
         Expenditure newExpenditure = expenditureRepository.save(existingExpenditure);
         log.info("Expenditure updated successfully {}",newExpenditure);
         return newExpenditure;
 }
+//    @Override
+//    public Integer getTotalExpenditureById(Long expenditureId){
+//        return expenditureRepository.getTotalExpenditureById(expenditureId);
+//    }
     @Override
-    public Integer getTotalExpenditureById(Long expenditureId){
-        return expenditureRepository.getTotalExpenditureById(expenditureId);
+    public Map<Long,Double> calculatePercentage(){
+        List<Expenditure> expenditures = expenditureRepository.findAll();
+//        int totalSum = expenditures.stream().mapToInt(Expenditure::getRent).sum();
+        Map<Long,Double> percentages = new HashMap<>();
+        for (Expenditure expenditure: expenditures){
+            double percentage = (double) expenditure.getRent()*100/expenditure.getTotal();
+            percentages.put(expenditure.getId(),percentage);
+        }
+        return percentages;
     }
 }
 

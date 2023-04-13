@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
@@ -64,10 +65,15 @@ public class ExpenditureController {
                 .map(expenditure -> modelMapper.map(expenditure, ExpenditureDTO.class))
                 .collect(Collectors.toList()));
     }
-    @GetMapping("/totalExpenditure/{expenditureId}")
-   public ResponseEntity<Integer>getTotalExpenditureById(@PathVariable Long expenditureId){
-        Integer total = expenditureService.getTotalExpenditureById(expenditureId);
-        return ResponseEntity.ok(total);
+//    @GetMapping("/totalExpenditure/{expenditureId}")
+//   public ResponseEntity<Integer>getTotalExpenditureById(@PathVariable Long expenditureId){
+//        Integer total = expenditureService.getTotalExpenditureById(expenditureId);
+//        return ResponseEntity.ok(total);
+//    }
+    @GetMapping("/getPercentages")
+    public ResponseEntity<Map<Long,Double>> getExpenditurePercentage(){
+        Map<Long,Double>percentages = expenditureService.calculatePercentage();
+       return ResponseEntity.ok(percentages);
     }
 
     @GetMapping("/{expenditureId}")
