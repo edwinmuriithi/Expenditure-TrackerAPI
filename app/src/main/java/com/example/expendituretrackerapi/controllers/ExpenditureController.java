@@ -65,16 +65,6 @@ public class ExpenditureController {
                 .map(expenditure -> modelMapper.map(expenditure, ExpenditureDTO.class))
                 .collect(Collectors.toList()));
     }
-//    @GetMapping("/totalExpenditure/{expenditureId}")
-//   public ResponseEntity<Integer>getTotalExpenditureById(@PathVariable Long expenditureId){
-//        Integer total = expenditureService.getTotalExpenditureById(expenditureId);
-//        return ResponseEntity.ok(total);
-//    }
-    @GetMapping("/getPercentages")
-    public ResponseEntity<Map<Long,Double>> getExpenditurePercentage(){
-        Map<Long,Double>percentages = expenditureService.calculatePercentage();
-       return ResponseEntity.ok(percentages);
-    }
 
     @GetMapping("/{expenditureId}")
     public ResponseEntity<ExpenditureDTO>viewById(@PathVariable Long expenditureId){
@@ -98,7 +88,6 @@ public class ExpenditureController {
             throw new ExpenditureNotFoundException("Update to Expenditure failed");
         }
     }
-
     @DeleteMapping("/{expenditureId}")
     public void deleteExpenditureById(@PathVariable Long expenditureId)throws ExpenditureNotFoundException{
         expenditureService.deleteExpenditureById(expenditureId);

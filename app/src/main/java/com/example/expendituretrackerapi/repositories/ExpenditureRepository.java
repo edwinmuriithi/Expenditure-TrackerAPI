@@ -12,9 +12,5 @@ import java.util.Optional;
 public interface ExpenditureRepository extends JpaRepository<Expenditure, Long> {
 
     Optional<Expenditure> findById(Long expenditureId);
-//   @Query("SELECT SUM(expenditure.food+expenditure.rent+expenditure.transport+expenditure.schoolFee+expenditure.shopping+expenditure.entertainment+expenditure.health)FROM Expenditure expenditure WHERE expenditure.id=:expenditureId")
-//    Integer getTotalExpenditureById(@Param("expenditureId") Long expenditureId);
-
-
 
 }

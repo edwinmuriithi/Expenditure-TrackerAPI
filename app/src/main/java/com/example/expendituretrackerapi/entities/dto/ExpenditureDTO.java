@@ -17,13 +17,13 @@ public class ExpenditureDTO {
     private Integer entertainment;
     private Integer total;
 
-    private  Integer rentPercentage;
-    private Integer foodPercentage;
-    private Integer transportPercentage;
-    private Integer healthPercentage;
-    private Integer schoolFeePercentage;
-    private Integer shoppingPercentage;
-    private Integer entertainmentPercentage;
+    private  Double rentPercentage;
+    private  Double foodPercentage;
+    private  Double transportPercentage;
+    private  Double healthPercentage;
+    private  Double schoolFeePercentage;
+    private  Double shoppingPercentage;
+    private  Double entertainmentPercentage;
     private IncomeDTO income;
     @JsonFormat(pattern="yyyy-MM-dd")
     private LocalDate createdDate;

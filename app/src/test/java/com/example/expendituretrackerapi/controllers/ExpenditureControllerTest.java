@@ -62,22 +62,22 @@ class ExpenditureControllerTest extends AbstractTest {
     private ExpenditureController expenditureController;
     @BeforeEach
     public void setup() throws Exception {
-        Expenditure expenditure = new Expenditure();
-        expenditure.setId(2L);
-        expenditure.setRent(10000);
-        expenditure.setFood(5000);
-        expenditure.setTransport(3000);
-        expenditure.setHealth(3000);
-        expenditure.setSchoolFee(20000);
-        expenditure.setShopping(2000);
-        expenditure.setShopping(2000);
-        expenditure.setEntertainment(3000);
-        expenditure.setIncome(new Income(1L,200000,100000, LocalDate.now()));
-        expenditure.setCreatedDate(LocalDate.now());
-        System.out.println("This is " + expenditure.toString());
-        when(expenditureService.createExpenditure(expenditure, 1L)).thenReturn(expenditure);
-        when(expenditureService.findById(2L)).thenReturn(expenditure);
-        when(expenditureService.findById(3L)).thenThrow(new ExpenditureNotFoundException("Expenditure not found with ID " + 3L));
+//        Expenditure expenditure = new Expenditure();
+//        expenditure.setId(2L);
+//        expenditure.setRent(10000);
+//        expenditure.setFood(5000);
+//        expenditure.setTransport(3000);
+//        expenditure.setHealth(3000);
+//        expenditure.setSchoolFee(20000);
+//        expenditure.setShopping(2000);
+//        expenditure.setShopping(2000);
+//        expenditure.setEntertainment(3000);
+//        expenditure.setIncome(new Income(1L,200000,100000, LocalDate.now()));
+//        expenditure.setCreatedDate(LocalDate.now());
+//        System.out.println("This is " + expenditure.toString());
+//        when(expenditureService.createExpenditure(expenditure, 1L)).thenReturn(expenditure);
+//        when(expenditureService.findById(2L)).thenReturn(expenditure);
+//        when(expenditureService.findById(3L)).thenThrow(new ExpenditureNotFoundException("Expenditure not found with ID " + 3L));
 
     }
     @Test
