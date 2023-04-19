@@ -11,15 +11,10 @@ import java.util.Map;
 public interface ExpenditureService {
     Expenditure createExpenditure(Expenditure expenditure,Long incomeId);
 
-    //int getTotalExpenditure(Expenditure expenditure);
-
     List<Expenditure> viewExpenditure() throws ExpenditureNotFoundException;
-   // Integer getTotalExpenditureById(Long expenditureID);
 
     Expenditure findById(Long expenditureId) throws ExpenditureNotFoundException;
     void deleteExpenditureById(Long expenditureId)throws ExpenditureNotFoundException;
     Expenditure updateExpenditureById(Expenditure expenditure, Long expenditureId)throws ExpenditureNotFoundException;
 
-
-    Map<Long,Double> calculatePercentage();
 }

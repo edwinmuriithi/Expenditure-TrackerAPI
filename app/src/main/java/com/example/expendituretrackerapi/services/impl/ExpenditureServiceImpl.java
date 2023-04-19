@@ -110,20 +110,5 @@ public class ExpenditureServiceImpl implements ExpenditureService {
         log.info("Expenditure updated successfully {}",newExpenditure);
         return newExpenditure;
 }
-//    @Override
-//    public Integer getTotalExpenditureById(Long expenditureId){
-//        return expenditureRepository.getTotalExpenditureById(expenditureId);
-//    }
-    @Override
-    public Map<Long,Double> calculatePercentage(){
-        List<Expenditure> expenditures = expenditureRepository.findAll();
-//        int totalSum = expenditures.stream().mapToInt(Expenditure::getRent).sum();
-        Map<Long,Double> percentages = new HashMap<>();
-        for (Expenditure expenditure: expenditures){
-            double percentage = (double) expenditure.getRent()*100/expenditure.getTotal();
-            percentages.put(expenditure.getId(),percentage);
-        }
-        return percentages;
-    }
 }
 

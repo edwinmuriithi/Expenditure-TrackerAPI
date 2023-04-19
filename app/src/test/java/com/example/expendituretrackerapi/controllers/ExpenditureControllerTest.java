@@ -1,3 +1,89 @@
+package com.example.expendituretrackerapi.controllers;
+
+import com.example.expendituretrackerapi.entities.Expenditure;
+import com.example.expendituretrackerapi.entities.Income;
+import com.example.expendituretrackerapi.entities.dto.ExpenditureDTO;
+import com.example.expendituretrackerapi.exception.ExpenditureNotFoundException;
+import com.example.expendituretrackerapi.repositories.ExpenditureRepository;
+import com.example.expendituretrackerapi.repositories.IncomeRepository;
+import com.example.expendituretrackerapi.services.ExpenditureService;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.hamcrest.Matchers;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.test.web.servlet.ResultMatcher;
+import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+
+import java.time.LocalDate;
+import java.util.Objects;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.*;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+@WebMvcTest(ExpenditureController.class)
+class ExpenditureControllerTest extends AbstractTest {
+
+    @Autowired
+    private MockMvc mockMvc;
+    @MockBean
+    private ExpenditureService expenditureService;
+    @MockBean
+    private ExpenditureRepository expenditureRepository;
+    @MockBean
+    public IncomeRepository incomeRepository;
+    @MockBean
+    private ModelMapper modelMapper;
+    @Autowired
+    private ObjectMapper objectMapper;
+
+    @Autowired
+    private ExpenditureController expenditureController;
+    @BeforeEach
+    public void setup() throws Exception {
+//        Expenditure expenditure = new Expenditure();
+//        expenditure.setId(2L);
+//        expenditure.setRent(10000);
+//        expenditure.setFood(5000);
+//        expenditure.setTransport(3000);
+//        expenditure.setHealth(3000);
+//        expenditure.setSchoolFee(20000);
+//        expenditure.setShopping(2000);
+//        expenditure.setShopping(2000);
+//        expenditure.setEntertainment(3000);
+//        expenditure.setIncome(new Income(1L,200000,100000, LocalDate.now()));
+//        expenditure.setCreatedDate(LocalDate.now());
+//        System.out.println("This is " + expenditure.toString());
+//        when(expenditureService.createExpenditure(expenditure, 1L)).thenReturn(expenditure);
+//        when(expenditureService.findById(2L)).thenReturn(expenditure);
+//        when(expenditureService.findById(3L)).thenThrow(new ExpenditureNotFoundException("Expenditure not found with ID " + 3L));
+
+    }
+    @Test
+    public void createExpenditure()throws Exception {
+//        ExpenditureDTO expenditureDTO = new ExpenditureDTO();
+//        Long incomeId = 1L;
 //package com.example.expendituretrackerapi.controllers;
 //
 //import com.example.expendituretrackerapi.entities.Expenditure;
@@ -62,6 +148,7 @@
 //    private ExpenditureController expenditureController;
 //    @BeforeEach
 //    public void setup() throws Exception {
+
 //        Expenditure expenditure = new Expenditure();
 //        expenditure.setId(2L);
 //        expenditure.setRent(10000);
@@ -157,3 +244,5 @@
 //
 //}
 //
+    }
+}

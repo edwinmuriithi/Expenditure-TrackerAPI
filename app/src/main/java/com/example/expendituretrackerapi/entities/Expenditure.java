@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -47,6 +48,7 @@ public class Expenditure {
 
 
     public  Double getRentPercentage() {
+        DecimalFormat df = new DecimalFormat("65.87");
         return (double) ((rent*100)/total);
     }
 
