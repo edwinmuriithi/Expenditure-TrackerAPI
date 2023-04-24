@@ -1,13 +1,8 @@
 package com.example.expendituretrackerapi.services.impl;
 
 import com.example.expendituretrackerapi.entities.Expenditure;
-import com.example.expendituretrackerapi.entities.Income;
-
 import com.example.expendituretrackerapi.exception.ExpenditureNotFoundException;
-
-import com.example.expendituretrackerapi.exception.IncomeNotFoundException;
 import com.example.expendituretrackerapi.repositories.ExpenditureRepository;
-import com.example.expendituretrackerapi.repositories.IncomeRepository;
 import com.example.expendituretrackerapi.services.ExpenditureService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,19 +16,16 @@ import java.util.Optional;
 public class ExpenditureServiceImpl implements ExpenditureService {
 
     @Autowired
-    private ExpenditureRepository expenditureRepository;
-    @Autowired
-    private IncomeRepository incomeRepository;
+    private final ExpenditureRepository expenditureRepository;
 
-    public ExpenditureServiceImpl(ExpenditureRepository expenditureRepository,IncomeRepository incomeRepository) {
+    public ExpenditureServiceImpl(ExpenditureRepository expenditureRepository) {
         this.expenditureRepository = expenditureRepository;
-        this.incomeRepository = incomeRepository;
     }
 
     @Override
-    public Expenditure createExpenditure(Expenditure expenditure,Long incomeId) {
-        Income income = incomeRepository.findById(incomeId).orElseThrow(()->
-                new IncomeNotFoundException("not found income with id :" + incomeId));
+    public Expenditure createExpenditure(Expenditure expenditure, Long incomeId) {
+//        Income income = incomeRepository.findById(incomeId).orElseThrow(()->
+//                new IncomeNotFoundException("not found income with id :" + incomeId));
         expenditure.setRent(expenditure.getRent());
         expenditure.setFood(expenditure.getFood());
         expenditure.setTransport(expenditure.getTransport());
@@ -41,7 +33,7 @@ public class ExpenditureServiceImpl implements ExpenditureService {
         expenditure.setSchoolFee(expenditure.getSchoolFee());
         expenditure.setShopping(expenditure.getShopping());
         expenditure.setEntertainment(expenditure.getEntertainment());
-        expenditure.setIncome(income);
+//        expenditure.setIncome(income);
         return expenditureRepository.save(expenditure);
     }
 
