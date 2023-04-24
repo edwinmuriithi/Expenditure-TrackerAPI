@@ -21,6 +21,7 @@ public class Income {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String userId;
 
     @NotNull(message = "should not be blank")
     private Integer income;
