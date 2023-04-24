@@ -75,7 +75,7 @@ public class UserController {
         if(incomeRequest.getIncome() > incomeRequest.getBudget()){
             IncomeDTO income = userService.createUserIncome(incomeRequest, userId);
             log.info("Income has been saved successfully {}",income);
-            return new ResponseEntity<IncomeDTO>(income, HttpStatus.CREATED);
+            return new ResponseEntity<>(income, HttpStatus.CREATED);
         } else {
             log.error("Budget has exceeded Income");
             throw new IncomeNotFoundException("budget should not exceed income");
@@ -92,6 +92,6 @@ public class UserController {
             throw new IncomeNotFoundException("Expenditure not created");
         }else{
             log.info("Expenditure has been saved successfully {}", expenditure);
-            return new ResponseEntity<ExpenditureDTO>(expenditure, HttpStatus.CREATED);
+            return new ResponseEntity<>(expenditure, HttpStatus.CREATED);
         }}
 }
