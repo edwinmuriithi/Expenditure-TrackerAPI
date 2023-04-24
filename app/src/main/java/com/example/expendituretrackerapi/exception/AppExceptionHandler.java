@@ -36,4 +36,12 @@ public class AppExceptionHandler {
         errorMap.put("errorMessage", ex.getMessage());
         return errorMap;
     }
+
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler(UserDetailNotFoundException.class)
+    public Map<String, String> handleBusinessException(UserDetailNotFoundException exception) {
+        Map<String, String> errorMap = new HashMap<>();
+        errorMap.put("errorMessage", exception.getMessage());
+        return errorMap;
+    }
 }
