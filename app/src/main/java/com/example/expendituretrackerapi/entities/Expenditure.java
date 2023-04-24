@@ -20,6 +20,7 @@ public class Expenditure {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String userId;
     private Integer rent;
     private Integer food;
     private Integer transport;
@@ -27,10 +28,11 @@ public class Expenditure {
     private Integer schoolFee;
     private Integer shopping;
     private Integer entertainment;
+    private Integer total;
 
-    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    @JoinColumn(name = "income_id")
-    private Income income;
+//    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+//    @JoinColumn(name = "income_id")
+//    private Income income;
     @Column(nullable = false)
     @JsonFormat(pattern="yyyy-MM-dd")
     private LocalDate createdDate;
