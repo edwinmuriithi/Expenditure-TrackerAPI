@@ -83,14 +83,19 @@ public class UserController {
     }
 
     @PostMapping("/{userId}/expenditure")
-    public ResponseEntity<ExpenditureDTO>createUserIncome(@PathVariable String userId, @RequestBody ExpenditureDTO expenditureDTO){
+    public ResponseEntity<ExpenditureDTO>createUserExpenditure(@PathVariable String userId, @RequestBody ExpenditureDTO expenditureDTO){
         Expenditure expenditureRequest = modelMapper.map(expenditureDTO, Expenditure.class);
         ExpenditureDTO expenditure = userService.createUserExpenditure(expenditureRequest, userId);
 
+        IncomeDTO income = userService.findUserIncome(userId);
+
         if (expenditure == null) {
             log.error("Expenditure not saved");
-            throw new IncomeNotFoundException("Expenditure not created");
-        }else{
+            throw new ExpenditureNotFoundException("Expenditure not created");
+        } else if(expenditure.getTotal() > income.getBudget()){
+            log.error("Budget exceeded total expenditure");
+            throw new ExpenditureNotFoundException("Budget should not exceed your total expenditure");
+        } else{
             log.info("Expenditure has been saved successfully {}", expenditure);
             return new ResponseEntity<>(expenditure, HttpStatus.CREATED);
         }
