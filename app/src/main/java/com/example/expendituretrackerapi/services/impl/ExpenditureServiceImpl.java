@@ -24,8 +24,6 @@ public class ExpenditureServiceImpl implements ExpenditureService {
 
     @Override
     public Expenditure createExpenditure(Expenditure expenditure, Long incomeId) {
-//        Income income = incomeRepository.findById(incomeId).orElseThrow(()->
-//                new IncomeNotFoundException("not found income with id :" + incomeId));
         expenditure.setRent(expenditure.getRent());
         expenditure.setFood(expenditure.getFood());
         expenditure.setTransport(expenditure.getTransport());
@@ -33,7 +31,23 @@ public class ExpenditureServiceImpl implements ExpenditureService {
         expenditure.setSchoolFee(expenditure.getSchoolFee());
         expenditure.setShopping(expenditure.getShopping());
         expenditure.setEntertainment(expenditure.getEntertainment());
-//        expenditure.setIncome(income);
+        expenditure.setTotal(expenditure.getTotal());
+
+        //Getting percentages
+        expenditure.setRentPercentage(expenditure.getRentPercentage());
+        expenditure.setFoodPercentage(expenditure.getFoodPercentage());
+        expenditure.setTransportPercentage(expenditure.getTransportPercentage());
+        expenditure.setHealthPercentage(expenditure.getHealthPercentage());
+        expenditure.setSchoolFeePercentage(expenditure.getSchoolFeePercentage());
+        expenditure.setShoppingPercentage(expenditure.getShoppingPercentage());
+        expenditure.setEntertainmentPercentage(expenditure.getEntertainmentPercentage());
+        if (expenditure.getTotal() > income.getBudget() ){
+            log.error("Budget exceeded total expenditure");
+            throw new IncomeNotFoundException("Budget should not exceed your total expenditure");
+        }else {
+            return expenditureRepository.save(expenditure);
+        }
+
         return expenditureRepository.save(expenditure);
     }
 
@@ -80,13 +94,10 @@ public class ExpenditureServiceImpl implements ExpenditureService {
         existingExpenditure.setSchoolFee(expenditure.getSchoolFee());
         existingExpenditure.setShopping(expenditure.getShopping());
         existingExpenditure.setEntertainment(expenditure.getEntertainment());
+        existingExpenditure.setTotal(expenditure.getTotal());
         Expenditure newExpenditure = expenditureRepository.save(existingExpenditure);
         log.info("Expenditure updated successfully {}",newExpenditure);
         return newExpenditure;
 }
-    @Override
-    public Integer getTotalExpenditureById(Long expenditureId){
-        return expenditureRepository.getTotalExpenditureById(expenditureId);
-    }
 }
 
