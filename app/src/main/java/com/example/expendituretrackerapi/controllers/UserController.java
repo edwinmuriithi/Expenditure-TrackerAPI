@@ -93,5 +93,6 @@ public class UserController {
         }else{
             log.info("Expenditure has been saved successfully {}", expenditure);
             return new ResponseEntity<>(expenditure, HttpStatus.CREATED);
-        }}
+        }
+    }
 }
