@@ -58,6 +58,15 @@ public class UserServiceImpl implements UserService {
         expenditure.setSchoolFee(expenditure.getSchoolFee());
         expenditure.setShopping(expenditure.getShopping());
         expenditure.setEntertainment(expenditure.getEntertainment());
+
+        //Getting percentages
+        expenditure.setRentPercentage(expenditure.getRentPercentage());
+        expenditure.setFoodPercentage(expenditure.getFoodPercentage());
+        expenditure.setTransportPercentage(expenditure.getTransportPercentage());
+        expenditure.setHealthPercentage(expenditure.getHealthPercentage());
+        expenditure.setSchoolFeePercentage(expenditure.getSchoolFeePercentage());
+        expenditure.setShoppingPercentage(expenditure.getShoppingPercentage());
+        expenditure.setEntertainmentPercentage(expenditure.getEntertainmentPercentage());
         return modelMapper.map(expenditureRepository.save(expenditure), ExpenditureDTO.class);
     }
 
