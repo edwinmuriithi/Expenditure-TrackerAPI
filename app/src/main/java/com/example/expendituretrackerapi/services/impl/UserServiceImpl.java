@@ -58,6 +58,7 @@ public class UserServiceImpl implements UserService {
         expenditure.setSchoolFee(expenditure.getSchoolFee());
         expenditure.setShopping(expenditure.getShopping());
         expenditure.setEntertainment(expenditure.getEntertainment());
+        expenditure.setTotal(expenditure.getTotal());
 
         //Getting percentages
         expenditure.setRentPercentage(expenditure.getRentPercentage());
