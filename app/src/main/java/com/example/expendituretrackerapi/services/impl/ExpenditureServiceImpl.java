@@ -41,13 +41,6 @@ public class ExpenditureServiceImpl implements ExpenditureService {
         expenditure.setSchoolFeePercentage(expenditure.getSchoolFeePercentage());
         expenditure.setShoppingPercentage(expenditure.getShoppingPercentage());
         expenditure.setEntertainmentPercentage(expenditure.getEntertainmentPercentage());
-        if (expenditure.getTotal() > income.getBudget() ){
-            log.error("Budget exceeded total expenditure");
-            throw new IncomeNotFoundException("Budget should not exceed your total expenditure");
-        }else {
-            return expenditureRepository.save(expenditure);
-        }
-
         return expenditureRepository.save(expenditure);
     }
 
