@@ -1,31 +1,12 @@
 version: "3.9"
 services:
-  expenditure-api-db:
-    image: mysql
-    container_name: mysqldb
-    networks:
-      - expenditure-api-network
-    environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=finportal
-    volumes:
-      - expenditure-api-volume:/etc/mysqldb/data
   expenditure-api:
     image: muriithike/expenditure-api-img:v1.0.0
     ports:
       - 8081:8081
     networks:
       expenditure-api-network:
-    environment:
-      - DATASOURCE_HOST=mysqldb:3306
-      - DATASOURCE_USER=root
-      - DATASOURCE_PASSWORD=root
-      - DATASOURCE_DB=finportal
-    depends_on:
-        expenditure-api-db:
-          condition: service_healthy
+
 networks:
   expenditure-api-network:
     driver: bridge
-volumes:
-  expenditure-api-volume:
