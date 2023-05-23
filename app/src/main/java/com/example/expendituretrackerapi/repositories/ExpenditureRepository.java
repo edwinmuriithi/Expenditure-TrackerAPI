@@ -13,4 +13,8 @@ public interface ExpenditureRepository extends JpaRepository<Expenditure, Long> 
 
     Optional<Expenditure> findById(Long expenditureId);
 
+    @Query("SELECT expenditure FROM Expenditure expenditure WHERE expenditure.userId=:userId")
+    Optional<Expenditure> findUserExpenditure(
+            @Param("userId") String userId);
+
 }

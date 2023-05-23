@@ -7,7 +7,6 @@ import java.time.LocalDate;
 
 @Data
 public class ExpenditureDTO {
-    private Long id;
     private Integer rent;
     private Integer food;
     private Integer transport;
@@ -24,7 +23,6 @@ public class ExpenditureDTO {
     private  Double schoolFeePercentage;
     private  Double shoppingPercentage;
     private  Double entertainmentPercentage;
-    private IncomeDTO income;
     @JsonFormat(pattern="yyyy-MM-dd")
     private LocalDate createdDate;
 

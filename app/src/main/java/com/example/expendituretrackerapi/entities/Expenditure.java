@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
-import java.util.Objects;
 
 @Builder
 @Data
@@ -21,6 +20,7 @@ public class Expenditure {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String userId;
     private Integer rent;
     private Integer food;
     private Integer transport;
@@ -31,9 +31,6 @@ public class Expenditure {
 
     private Integer total;
 
-    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    @JoinColumn(name = "income_id")
-    private Income income;
     @Column(nullable = false)
     @JsonFormat(pattern="yyyy-MM-dd")
     private LocalDate createdDate;
@@ -46,34 +43,38 @@ public class Expenditure {
     private  Double shoppingPercentage;
     private  Double entertainmentPercentage;
 
+    private static final DecimalFormat df = new DecimalFormat("65.87");
 
     public  Double getRentPercentage() {
-        DecimalFormat df = new DecimalFormat("65.87");
-        return (double) ((rent*100)/total);
+        double rentValue = (rent*100)/total;
+        return  Math.round(rentValue*100.0)/100.0;
     }
 
     public  Double getFoodPercentage() {
-        return (double) ((food*100)/total);
+        double foodP =  Math.round(((food*100)/total)*100.0)/100.0;
+        return  foodP;
     }
 
     public  Double getTransportPercentage() {
-        return (double) (transport*100)/total;
+        double transportValue = (transport*100)/total;
+        return  Math.round(transportValue*100.0)/100.0;
     }
 
     public  Double getHealthPercentage() {
-        return (double) (health*100)/total;
+        double healthP = Math.round(((health*100)/total)*100.0)/100.0;
+        return healthP;
     }
 
     public  Double getSchoolFeePercentage() {
-        return (double) (schoolFee*100)/total;
+        return  Math.round(((schoolFee*100)/total)*100.0)/100.0;
     }
 
     public  Double getShoppingPercentage() {
-        return (double) (shopping*100)/total;
+        return  Math.round(((shopping*100)/total)*100.0)/100.0;
     }
 
     public  Double getEntertainmentPercentage() {
-        return (double) (entertainment*100)/total;
+        return Math.round(((entertainment*100)/total)*100.0)/100.0;
     }
 
     public Integer getTotal(){
