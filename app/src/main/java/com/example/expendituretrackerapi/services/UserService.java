@@ -16,4 +16,5 @@ public interface UserService {
     ExpenditureDTO createUserExpenditure(Expenditure expenditure, String userId);
     IncomeDTO findUserIncome(String userId) throws IncomeNotFoundException;
     ExpenditureDTO findUserExpenditure(String userId) throws ExpenditureNotFoundException;
+    IncomeDTO updateUserIncome( Income income,String userId);
 }

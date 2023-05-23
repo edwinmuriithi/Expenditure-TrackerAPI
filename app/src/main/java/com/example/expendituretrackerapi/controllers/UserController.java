@@ -100,4 +100,18 @@ public class UserController {
             return new ResponseEntity<>(expenditure, HttpStatus.CREATED);
         }
     }
+
+    @PutMapping("/{userId}/income")
+    public ResponseEntity<IncomeDTO>updateIncome(@PathVariable String userId,@RequestBody IncomeDTO incomeDTO) {
+        Income incomeRequest = modelMapper.map(incomeDTO, Income.class);
+        IncomeDTO income = userService.updateUserIncome(incomeRequest, userId);
+        IncomeDTO incomeResponse = modelMapper.map(income, IncomeDTO.class);
+        if (incomeResponse != null) {
+            log.info("Income updated Successfully");
+            return ResponseEntity.ok().body(incomeResponse);
+        } else {
+            log.error("user with id " + userId + " not found");
+            throw new UserDetailNotFoundException("Update to Income failed");
+        }
+    }
 }

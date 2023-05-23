@@ -5,6 +5,7 @@ import com.example.expendituretrackerapi.entities.Income;
 import com.example.expendituretrackerapi.entities.dto.ExpenditureDTO;
 import com.example.expendituretrackerapi.entities.dto.IncomeDTO;
 import com.example.expendituretrackerapi.entities.dto.UserDTO;
+import com.example.expendituretrackerapi.exception.UserDetailNotFoundException;
 import com.example.expendituretrackerapi.repositories.ExpenditureRepository;
 import com.example.expendituretrackerapi.repositories.IncomeRepository;
 import com.example.expendituretrackerapi.services.UserService;
@@ -82,4 +83,15 @@ public class UserServiceImpl implements UserService {
         Optional<Expenditure> expenditure = expenditureRepository.findUserExpenditure(userId);
         return modelMapper.map(expenditure, ExpenditureDTO.class);
     }
+
+    @Override
+    public IncomeDTO updateUserIncome(Income income, String userId) {
+        Income existingIncome = incomeRepository.findUserIncome(userId).orElseThrow(()->
+                new UserDetailNotFoundException("User with id"+userId+"not found"));
+        existingIncome.setIncome(income.getIncome());
+        existingIncome.setBudget(income.getBudget());
+        Income newIncome = incomeRepository.save(existingIncome);
+        return modelMapper.map(newIncome,IncomeDTO.class);
+    }
+
 }
