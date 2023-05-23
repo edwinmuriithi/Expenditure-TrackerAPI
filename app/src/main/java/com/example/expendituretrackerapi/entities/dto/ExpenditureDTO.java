@@ -7,6 +7,7 @@ import java.time.LocalDate;
 
 @Data
 public class ExpenditureDTO {
+    private Long id;
     private Integer rent;
     private Integer food;
     private Integer transport;
