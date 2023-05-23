@@ -5,6 +5,7 @@ import com.example.expendituretrackerapi.entities.Income;
 import com.example.expendituretrackerapi.entities.dto.ExpenditureDTO;
 import com.example.expendituretrackerapi.entities.dto.IncomeDTO;
 import com.example.expendituretrackerapi.entities.dto.UserDTO;
+import com.example.expendituretrackerapi.exception.ExpenditureNotFoundException;
 import com.example.expendituretrackerapi.exception.UserDetailNotFoundException;
 import com.example.expendituretrackerapi.repositories.ExpenditureRepository;
 import com.example.expendituretrackerapi.repositories.IncomeRepository;
@@ -92,6 +93,24 @@ public class UserServiceImpl implements UserService {
         existingIncome.setBudget(income.getBudget());
         Income newIncome = incomeRepository.save(existingIncome);
         return modelMapper.map(newIncome,IncomeDTO.class);
+    }
+
+    @Override
+    public ExpenditureDTO updateUserExpenditure(Expenditure expenditure, String userId) {
+        Expenditure existingExpenditure = expenditureRepository.findUserExpenditure(userId).orElseThrow(()->
+                new ExpenditureNotFoundException("Expenditure with ID "+userId+" not found"));
+        existingExpenditure.setRent(expenditure.getRent());
+        existingExpenditure.setFood(expenditure.getFood());
+        existingExpenditure.setTransport(expenditure.getTransport());
+        existingExpenditure.setHealth(expenditure.getHealth());
+        existingExpenditure.setSchoolFee(expenditure.getSchoolFee());
+        existingExpenditure.setShopping(expenditure.getShopping());
+        existingExpenditure.setEntertainment(expenditure.getEntertainment());
+        existingExpenditure.setTotal(expenditure.getTotal());
+        Expenditure newExpenditure = expenditureRepository.save(existingExpenditure);
+        log.info("Expenditure updated successfully {}",newExpenditure);
+        return modelMapper.map(newExpenditure,ExpenditureDTO.class);
+
     }
 
 }

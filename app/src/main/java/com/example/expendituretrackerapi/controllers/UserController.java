@@ -114,4 +114,17 @@ public class UserController {
             throw new UserDetailNotFoundException("Update to Income failed");
         }
     }
+    @PutMapping("/{userId}/expenditure")
+    public ResponseEntity<ExpenditureDTO>updateExpenditure(@PathVariable String userId,@RequestBody ExpenditureDTO expenditureDTO){
+        Expenditure expenditureRequest = modelMapper.map(expenditureDTO, Expenditure.class);
+        ExpenditureDTO expenditure = userService.updateUserExpenditure(expenditureRequest, userId);
+        ExpenditureDTO expenditureResponse = modelMapper.map(expenditure,ExpenditureDTO.class);
+        if (expenditureResponse !=null){
+            log.info("Expenditure updated Successfully");
+            return ResponseEntity.ok().body(expenditureResponse);
+        }else{
+            log.error("User with ID "+userId+" not found");
+            throw new UserDetailNotFoundException("Update to Expenditure failed");
+        }
+    }
 }
