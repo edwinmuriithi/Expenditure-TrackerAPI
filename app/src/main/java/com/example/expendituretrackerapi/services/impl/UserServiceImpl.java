@@ -42,16 +42,45 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public IncomeDTO createUserIncome(Income income, String userId) {
+        IncomeDTO existingIncome = findUserIncome(userId);
+
+        // Replace existing income with new income data --to be refactored
+        if(existingIncome != null){
+            Income oldIncome = incomeRepository.findById(existingIncome.getId()).get();
+            return initUpdatedIncome(oldIncome, income);
+        }
+
+        return initIncome(income, userId);
+    }
+
+    private IncomeDTO initIncome(Income income, String userId){
         income.setIncome(income.getIncome());
         income.setBudget(income.getBudget());
         income.setUserId(userId);
-        income.setCreatedDate(income.getCreatedDate());
 
         return modelMapper.map(incomeRepository.save(income), IncomeDTO.class);
     }
 
+    private IncomeDTO initUpdatedIncome(Income existingIncome, Income newIncome){
+        existingIncome.setIncome(newIncome.getIncome());
+        existingIncome.setBudget(newIncome.getBudget());
+        return modelMapper.map(incomeRepository.save(existingIncome), IncomeDTO.class);
+    }
+
     @Override
     public ExpenditureDTO createUserExpenditure(Expenditure expenditure, String userId) {
+        ExpenditureDTO existingExpenditure = findUserExpenditure(userId);
+
+        // Replace existing expenditure with new expenditure data --To be refactored
+        if(existingExpenditure != null){
+            Expenditure oldExpenditure = expenditureRepository.findById(existingExpenditure.getId()).get();
+            return initUpdatedExpenditure(oldExpenditure, expenditure);
+        }
+
+        return initExpenditure(expenditure, userId);
+    }
+
+    private ExpenditureDTO initExpenditure(Expenditure expenditure, String userId){
         expenditure.setUserId(userId);
         expenditure.setRent(expenditure.getRent());
         expenditure.setFood(expenditure.getFood());
@@ -71,6 +100,27 @@ public class UserServiceImpl implements UserService {
         expenditure.setShoppingPercentage(expenditure.getShoppingPercentage());
         expenditure.setEntertainmentPercentage(expenditure.getEntertainmentPercentage());
         return modelMapper.map(expenditureRepository.save(expenditure), ExpenditureDTO.class);
+    }
+
+    private ExpenditureDTO initUpdatedExpenditure(Expenditure existingExpenditure, Expenditure expenditure){
+        existingExpenditure.setRent(expenditure.getRent());
+        existingExpenditure.setFood(expenditure.getFood());
+        existingExpenditure.setTransport(expenditure.getTransport());
+        existingExpenditure.setHealth(expenditure.getHealth());
+        existingExpenditure.setSchoolFee(expenditure.getSchoolFee());
+        existingExpenditure.setShopping(expenditure.getShopping());
+        existingExpenditure.setEntertainment(expenditure.getEntertainment());
+        existingExpenditure.setTotal(existingExpenditure.getTotal());
+
+        //Getting percentages
+        existingExpenditure.setRentPercentage(existingExpenditure.getRentPercentage());
+        existingExpenditure.setFoodPercentage(existingExpenditure.getFoodPercentage());
+        existingExpenditure.setTransportPercentage(existingExpenditure.getTransportPercentage());
+        existingExpenditure.setHealthPercentage(existingExpenditure.getHealthPercentage());
+        existingExpenditure.setSchoolFeePercentage(existingExpenditure.getSchoolFeePercentage());
+        existingExpenditure.setShoppingPercentage(existingExpenditure.getShoppingPercentage());
+        existingExpenditure.setEntertainmentPercentage(existingExpenditure.getEntertainmentPercentage());
+        return modelMapper.map(expenditureRepository.save(existingExpenditure), ExpenditureDTO.class);
     }
 
     @Override
