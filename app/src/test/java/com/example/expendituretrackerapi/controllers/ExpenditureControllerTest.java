@@ -7,6 +7,7 @@ import com.example.expendituretrackerapi.exception.ExpenditureNotFoundException;
 import com.example.expendituretrackerapi.repositories.ExpenditureRepository;
 import com.example.expendituretrackerapi.repositories.IncomeRepository;
 import com.example.expendituretrackerapi.services.ExpenditureService;
+import com.example.expendituretrackerapi.services.IncomeService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -27,6 +28,9 @@ import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
+import org.springframework.test.web.servlet.MockMvc;
+
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 @WebMvcTest(ExpenditureController.class)
@@ -64,10 +68,13 @@ class ExpenditureControllerTest extends AbstractTest {
         expenditure.setCreatedDate(LocalDate.now());
         System.out.println("This is " + expenditure.toString());
         when(expenditureService.createExpenditure(expenditure, 1L)).thenReturn(expenditure);
+        System.out.println("This is "+ expenditure.toString());
+        when(expenditureService.createExpenditure(expenditure,1L)).thenReturn(expenditure);
         when(expenditureService.findById(2L)).thenReturn(expenditure);
         when(expenditureService.findById(3L)).thenThrow(new ExpenditureNotFoundException("Expenditure not found with ID " + 3L));
 
     }
+
     @Test
     public void createExpenditure()throws Exception{
 //        ExpenditureDTO expenditureDTO = new ExpenditureDTO();
@@ -90,5 +97,10 @@ class ExpenditureControllerTest extends AbstractTest {
 
     }
 
-}
 
+
+    @Test
+    void createExpenditureSuccess() throws Exception{
+
+    }
+}
